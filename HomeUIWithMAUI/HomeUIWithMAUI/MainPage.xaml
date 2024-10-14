@@ -1,36 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HomeUIWithMAUI.MainPage">
+             x:Class="HomeUIWithMAUI.MainPage"
+             BackgroundColor="White">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+    <!-- Main Content Container -->
+    <Grid>
+        <!-- Define two columns for layout -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+        <!-- Side Navigation Menu (Left Panel) -->
+        <StackLayout Grid.Column="0" Padding="20" BackgroundColor="#F5F5F5" Spacing="25">
+            <!-- Home Icon and Label -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Image Source="home_icon.png" HeightRequest="40" WidthRequest="40" />
+                <Label Text="Home" FontSize="18" FontAttributes="Bold" />
+            </StackLayout>
 
-            <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+            <!-- Wi-Fi Icon and Label -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Image Source="wifi_icon.png" HeightRequest="30" WidthRequest="30" />
+                <Label Text="Wi-Fi" FontSize="16" />
+            </StackLayout>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
-        </VerticalStackLayout>
-    </ScrollView>
+            <!-- Water Icon and Label -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Image Source="water_icon.png" HeightRequest="30" WidthRequest="30" />
+                <Label Text="Water" FontSize="16" />
+            </StackLayout>
+
+            <!-- Devices Icon and Label -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Image Source="devices_icon.png" HeightRequest="30" WidthRequest="30" />
+                <Label Text="Devices" FontSize="16" />
+            </StackLayout>
+
+            <!-- Security Icon and Label -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Image Source="security_icon.png" HeightRequest="30" WidthRequest="30" />
+                <Label Text="Security" FontSize="16" />
+            </StackLayout>
+
+            <!-- Electricity Icon and Label -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Image Source="electricity_icon.png" HeightRequest="30" WidthRequest="30" />
+                <Label Text="Electricity" FontSize="16" />
+            </StackLayout>
+
+            <!-- Settings Icon and Label -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Image Source="settings_icon.png" HeightRequest="30" WidthRequest="30" />
+                <Label Text="Settings" FontSize="16" />
+            </StackLayout>
+        </StackLayout>
+
+        <!-- Main Content (Right Panel) -->
+        <ScrollView Grid.Column="1" Padding="20">
+            <VerticalStackLayout Spacing="25">
+
+                <!-- Devices Section -->
+                <Label Text="Devices" FontSize="24" FontAttributes="Bold" />
+
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Smart Light - Status: On" FontSize="18" />
+                        <Switch x:Name="WiproSmartBulbSwitch" IsToggled="True" />
+                        <Button Text="Turn Off" BackgroundColor="Red" TextColor="White" Clicked="OnToggleLightClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Thermostat - Status: 72°F" FontSize="18" />
+                        <Switch x:Name="ThermostatSwitch" IsToggled="False" />
+                        <Button Text="Adjust" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Wi-Fi Section -->
+                <Label Text="Wi-Fi" FontSize="24" FontAttributes="Bold" />
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Wi-Fi Network - Status: Connected" FontSize="18" />
+                        <Switch x:Name="WiFiSwitch" Toggled="OnToggleWiFiClicked" />
+                        <Button Text="Disconnect" BackgroundColor="Red" TextColor="White" Clicked="OnDisconnectButtonClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+
+                <!-- Electricity Section -->
+                <Label Text="Electricity" FontSize="24" FontAttributes="Bold" />
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Current Usage: 4.5 kWh" FontSize="18" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Xiaomi Smartfan -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Fan - Status: Off" FontSize="18" />
+                        <Switch x:Name="XiaomiSmartFanSwitch" IsToggled="False" />
+                        <Button Text="Toggle Fan" BackgroundColor="Blue" TextColor="White" Clicked="OnToggleFanClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 
 </ContentPage>
