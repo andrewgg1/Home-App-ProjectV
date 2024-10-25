@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeUIWithMAUI.EnergyPage"
+             Title="EnergyPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="25">
+            <Label Text="Energy Monitoring" FontSize="24" FontAttributes="Bold" />
+
+            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                <VerticalStackLayout>
+                    <Label Text="Current Usage: 4.5 kWh" FontSize="18" />
+                    <Label Text="Estimated Monthly Usage: 135 kWh" FontSize="16" />
+                    <ProgressBar x:Name="EnergyProgressBar" Progress="0.3" HeightRequest="10"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                <VerticalStackLayout>
+                    <Label Text="Energy Usage Trend" FontSize="18" />
+                    <Button Text="Generate Graph" BackgroundColor="Blue" TextColor="White"
+                            Clicked="OnGenerateGraphClicked" />
+                    <Image x:Name="UsageGraph" HeightRequest="200" IsVisible="False"/>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
