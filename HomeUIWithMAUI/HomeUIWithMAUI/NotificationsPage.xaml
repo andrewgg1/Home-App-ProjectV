@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeUIWithMAUI.NotificationsPage"
+             Title="NotificationsPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="25">
+            <Label Text="Notifications and Alerts" FontSize="24" FontAttributes="Bold" />
+
+            <CollectionView x:Name="NotificationsListView" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Message}" FontSize="18" />
+                                <Label Text="{Binding Timestamp}" FontSize="14" TextColor="Gray" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Generate Sample Notification" BackgroundColor="Green" TextColor="White"
+                    Clicked="OnGenerateNotificationClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

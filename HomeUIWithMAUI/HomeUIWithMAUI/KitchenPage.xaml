@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeUIWithMAUI.KitchenPage"
+             Title="KitchenPage">
+    <VerticalStackLayout>
+        <!--Dashboard Summary Section-->
+        <Frame BackgroundColor="#4CAF50" Padding="10" CornerRadius="10" Margin="10">
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                <Label Text="System Status: All Devices Operating Normally" 
+                        FontSize="18" FontAttributes="Bold" 
+                        TextColor="White" HorizontalOptions="Center"/>
+                <Label Text="Last Alert: No recent alerts" 
+                        FontSize="14" TextColor="White" Margin="5"/>
+            </StackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>
