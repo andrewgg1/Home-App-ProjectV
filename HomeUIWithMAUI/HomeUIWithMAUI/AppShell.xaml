@@ -1,39 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:HomeUIWithMAUI"
-       x:Class="HomeUIWithMAUI.AppShell">
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="HomeUIWithMAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:HomeUIWithMAUI"
+    Shell.FlyoutBehavior="Disabled"
+    Title="HomeUIWithMAUI">
 
-    <TabBar>
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
 
-        <Tab Title="Home">
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
-        </Tab>
-        
-        <!--<Tab Title="Living Room">
-            <ShellContent ContentTemplate="{DataTemplate local:LivingRoomPage}" />
-        </Tab>
-
-        <Tab Title="Bedroom">
-            <ShellContent ContentTemplate="{DataTemplate local:BedroomPage}" />
-        </Tab>
-
-        <Tab Title="Kitchen">
-            <ShellContent ContentTemplate="{DataTemplate local:KitchenPage}" />
-        </Tab>
-
-        <Tab Title="Automation">
-            <ShellContent ContentTemplate="{DataTemplate local:AutomationPage}" />
-        </Tab>
-
-        <Tab Title="Energy">
-            <ShellContent ContentTemplate="{DataTemplate local:EnergyPage}" />
-        </Tab>
-
-        <Tab Title="Wi-Fi">
-            <ShellContent ContentTemplate="{DataTemplate local:WifiPage}" />
-        </Tab>-->
-
-
-    </TabBar>
 </Shell>

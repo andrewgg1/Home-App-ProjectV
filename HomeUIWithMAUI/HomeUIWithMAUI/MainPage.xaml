@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HomeUIWithMAUI.MainPage">
+             x:Class="HomeUIWithMAUI.MainPage"
+             BackgroundColor="White">
 
     <!-- Main Content Container -->
     <Grid>
@@ -59,16 +60,7 @@
         <!-- Main Content (Right Panel) -->
         <ScrollView Grid.Column="1" Padding="20">
             <VerticalStackLayout Spacing="25">
-               
-                    <Label Text="Home Automation Dashboard" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
-                    <!-- Command Input Section -->
-                    <Entry x:Name="UserCommandEntry" Placeholder="Type your command..." FontSize="18" />
-                    <Button Text="Execute Command" BackgroundColor="Blue" TextColor="White"
-                            Clicked="OnExecuteCommandClicked" />
-                    <Label x:Name="CommandResponseLabel" FontSize="18" TextColor="Green" />
-
-                  
                 <!-- Devices Section -->
                 <Label Text="Devices" FontSize="24" FontAttributes="Bold" />
 
@@ -116,49 +108,8 @@
                     </VerticalStackLayout>
                 </Frame>
 
-
-                <Label Text="Home Automation Dashboard" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
-
-                <Button Text="Living Room" BackgroundColor="Blue" TextColor="White" 
-                    Clicked="OnLivingRoomClicked" />
-                <Button Text="Bedroom" BackgroundColor="Purple" TextColor="White" 
-                    Clicked="OnBedroomClicked" />
-                <Button Text="Kitchen" BackgroundColor="Green" TextColor="White" 
-                    Clicked="OnKitchenClicked" />
-                <Button Text="Energy Monitoring" BackgroundColor="Orange" TextColor="White" 
-                    Clicked="OnEnergyClicked" />
-                <Button Text="Automation and Scenes" BackgroundColor="Red" TextColor="White" 
-                    Clicked="OnAutomationClicked" />
-                <Button Text="Wi-Fi Management" BackgroundColor="Gray" TextColor="White" 
-                    Clicked="OnWiFiClicked" />
-                <Button Text="Device Management" BackgroundColor="DarkBlue" TextColor="White"
-                    Clicked="OnDeviceManagementClicked" />
-                <Button Text="Notifications and Alerts" BackgroundColor="DarkRed" TextColor="White"
-                    Clicked="OnNotificationsClicked" />
-                <Button Text="Profile And Settings" BackgroundColor="DarkGray" TextColor="White"
-                    Clicked="OnProfileAndSettingsClicked" />
-                <Button Text="Security and Access Control" BackgroundColor="DarkRed" TextColor="White"
-                    Clicked="OnSecurityAndAccessClicked" />
-                <Button Text="Voice Control Simulation" BackgroundColor="DarkBlue" TextColor="White"
-                    Clicked="OnVoiceControlClicked" />
-
-
-
-                <!--Dashboard Summary Frame-->
-                <Frame BackgroundColor="#4CAF50" Padding="10" Margin="10"
-                    CornerRadius="10" HasShadow="True" Grid.Row="0" Grid.Column="1">
-                    <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-                        <Label Text="System Status: All Devices Operating Normally" 
-                                    FontSize="18" FontAttributes="Bold" 
-                                    TextColor="White" HorizontalOptions="Center"/>
-                        <Label Text="Last Alert: No recent alerts" 
-                                    FontSize="14" TextColor="White" Margin="5"/>
-                    </StackLayout>
-                </Frame>
-
             </VerticalStackLayout>
         </ScrollView>
-       
     </Grid>
 
 </ContentPage>
