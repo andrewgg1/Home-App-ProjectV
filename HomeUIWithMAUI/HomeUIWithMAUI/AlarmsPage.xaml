@@ -4,21 +4,22 @@
              x:Class="HomeUIWithMAUI.AlarmsPage"
              Title="Alarms">
 
-    <ScrollView Padding="20">
-        <VerticalStackLayout Spacing="10">
-            <Label Text="Alarms" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+    <ContentPage.Content>
+        <ScrollView Padding="20">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Alarms" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
-            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                <Label Text="Fire/Smoke Detector" FontSize="18" />
-                <Button Text="Test Alarm" BackgroundColor="Red" TextColor="White" Clicked="OnTestAlarmClicked" />
-            </Frame>
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <Label Text="Fire/Smoke Detector" FontSize="18" />
+                    <Button Text="Test Alarm" BackgroundColor="Red" TextColor="White" Clicked="OnTestAlarmClicked" />
+                </Frame>
 
-            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                <Label Text="Carbon Monoxide Detector" FontSize="18" />
-                <Button Text="Test Alarm" BackgroundColor="Red" TextColor="White" Clicked="OnTestAlarmClicked" />
-            </Frame>
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <Label Text="Carbon Monoxide Detector" FontSize="18" />
+                    <Button Text="Test Alarm" BackgroundColor="Red" TextColor="White" Clicked="OnTestAlarmClicked" />
+                </Frame>
 
-
-        </VerticalStackLayout>
-    </ScrollView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

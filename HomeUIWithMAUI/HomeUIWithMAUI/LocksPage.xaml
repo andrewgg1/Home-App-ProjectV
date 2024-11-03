@@ -4,21 +4,66 @@
              x:Class="HomeUIWithMAUI.LocksPage"
              Title="Locks">
 
-    <ScrollView Padding="20">
-        <VerticalStackLayout Spacing="10">
-            <Label Text="Locks" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+    <ContentPage.Content>
+        <ScrollView Padding="20">
+            <VerticalStackLayout Spacing="15">
+                <Label Text="Locks" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
-            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                <Label Text="Front Door Smart Lock" FontSize="18" />
-                <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnLockUnlockClicked" />
-            </Frame>
+                <!-- Front Door Smart Lock -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Front Door Smart Lock" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="FrontDoorLockStatus" Text="Status: Locked" FontSize="16" TextColor="Gray" />
+                        <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnFrontDoorLockToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
 
-            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                <Label Text="Garage Door Smart Lock" FontSize="18" />
-                <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnLockUnlockClicked" />
-            </Frame>
+                <!-- Garage Door Smart Lock -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Garage Door Smart Lock" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="GarageDoorLockStatus" Text="Status: Unlocked" FontSize="16" TextColor="Gray" />
+                        <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnGarageDoorLockToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
 
+                <!-- Back Door Smart Lock -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Back Door Smart Lock" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="BackDoorLockStatus" Text="Status: Locked" FontSize="16" TextColor="Gray" />
+                        <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnBackDoorLockToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
 
-        </VerticalStackLayout>
-    </ScrollView>
+                <!-- Window Locks -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Window Locks" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="WindowLockStatus" Text="Status: Locked" FontSize="16" TextColor="Gray" />
+                        <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnWindowLockToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Interior Door Locks -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Interior Door Locks (Mud Room)" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="InteriorDoorLockStatus" Text="Status: Locked" FontSize="16" TextColor="Gray" />
+                        <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnInteriorDoorLockToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Gate Locks -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Gate Locks (Fence Gate)" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="GateLockStatus" Text="Status: Unlocked" FontSize="16" TextColor="Gray" />
+                        <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnGateLockToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

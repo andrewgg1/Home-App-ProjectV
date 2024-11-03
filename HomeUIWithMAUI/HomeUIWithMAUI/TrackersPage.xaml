@@ -4,21 +4,22 @@
              x:Class="HomeUIWithMAUI.TrackersPage"
              Title="Trackers">
 
-    <ScrollView Padding="20">
-        <VerticalStackLayout Spacing="10">
-            <Label Text="Trackers" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+    <ContentPage.Content>
+        <ScrollView Padding="20">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Trackers" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
-            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                <Label Text="Car GPS Tracker" FontSize="18" />
-                <Button Text="Locate" BackgroundColor="Blue" TextColor="White" Clicked="OnLocateTrackerClicked" />
-            </Frame>
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <Label Text="Car GPS Tracker" FontSize="18" />
+                    <Button Text="Locate" BackgroundColor="Blue" TextColor="White" Clicked="OnLocateTrackerClicked" />
+                </Frame>
 
-            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                <Label Text="Bike GPS Tracker" FontSize="18" />
-                <Button Text="Locate" BackgroundColor="Blue" TextColor="White" Clicked="OnLocateTrackerClicked" />
-            </Frame>
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <Label Text="Bike GPS Tracker" FontSize="18" />
+                    <Button Text="Locate" BackgroundColor="Blue" TextColor="White" Clicked="OnLocateTrackerClicked" />
+                </Frame>
 
-
-        </VerticalStackLayout>
-    </ScrollView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
