@@ -18,7 +18,6 @@
                 <Button Text="Enable/Disable" BackgroundColor="Blue" TextColor="White" Clicked="OnSensorToggleClicked" />
             </Frame>
 
-            <!-- Add similar frames for other sensors as needed -->
 
         </VerticalStackLayout>
     </ScrollView>

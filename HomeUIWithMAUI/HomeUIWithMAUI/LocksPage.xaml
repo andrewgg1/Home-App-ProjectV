@@ -18,7 +18,6 @@
                 <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnLockUnlockClicked" />
             </Frame>
 
-            <!-- Add similar frames for other locks as needed -->
 
         </VerticalStackLayout>
     </ScrollView>
