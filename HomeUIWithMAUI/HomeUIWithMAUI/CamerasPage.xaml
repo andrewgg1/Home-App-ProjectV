@@ -6,17 +6,52 @@
 
     <ContentPage.Content>
         <ScrollView Padding="20">
-            <VerticalStackLayout Spacing="10">
+            <VerticalStackLayout Spacing="15">
                 <Label Text="Cameras" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
+                <!-- Front Doorbell Camera -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                    <Label Text="Front Doorbell Camera" FontSize="18" />
-                    <Button Text="View" BackgroundColor="Blue" TextColor="White" Clicked="OnViewCameraClicked" />
+                    <VerticalStackLayout>
+                        <Label Text="Front Doorbell Camera" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="FrontDoorbellCameraStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Turn On/Off" BackgroundColor="Blue" TextColor="White" Clicked="OnFrontDoorbellCameraToggleClicked" />
+                    </VerticalStackLayout>
                 </Frame>
 
+                <!-- Backyard Camera -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                    <Label Text="Backyard Camera" FontSize="18" />
-                    <Button Text="View" BackgroundColor="Blue" TextColor="White" Clicked="OnViewCameraClicked" />
+                    <VerticalStackLayout>
+                        <Label Text="Backyard Camera" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="BackyardCameraStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Turn On/Off" BackgroundColor="Blue" TextColor="White" Clicked="OnBackyardCameraToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Side Gate Camera -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Side Gate Camera" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="SideGateCameraStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Turn On/Off" BackgroundColor="Blue" TextColor="White" Clicked="OnSideGateCameraToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Garage Camera -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Garage Camera" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="GarageCameraStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Turn On/Off" BackgroundColor="Blue" TextColor="White" Clicked="OnGarageCameraToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Driveway Camera -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Driveway Camera" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="DrivewayCameraStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Turn On/Off" BackgroundColor="Blue" TextColor="White" Clicked="OnDrivewayCameraToggleClicked" />
+                    </VerticalStackLayout>
                 </Frame>
 
             </VerticalStackLayout>
