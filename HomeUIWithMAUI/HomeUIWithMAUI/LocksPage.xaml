@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeUIWithMAUI.LocksPage"
+             Title="Locks">
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="10">
+            <Label Text="Locks" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                <Label Text="Front Door Smart Lock" FontSize="18" />
+                <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnLockUnlockClicked" />
+            </Frame>
+
+            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                <Label Text="Garage Door Smart Lock" FontSize="18" />
+                <Button Text="Lock/Unlock" BackgroundColor="Blue" TextColor="White" Clicked="OnLockUnlockClicked" />
+            </Frame>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

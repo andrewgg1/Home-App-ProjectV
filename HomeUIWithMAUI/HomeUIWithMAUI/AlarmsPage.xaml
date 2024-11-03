@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeUIWithMAUI.AlarmsPage"
+             Title="Alarms">
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="10">
+            <Label Text="Alarms" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                <Label Text="Fire/Smoke Detector" FontSize="18" />
+                <Button Text="Test Alarm" BackgroundColor="Red" TextColor="White" Clicked="OnTestAlarmClicked" />
+            </Frame>
+
+            <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                <Label Text="Carbon Monoxide Detector" FontSize="18" />
+                <Button Text="Test Alarm" BackgroundColor="Red" TextColor="White" Clicked="OnTestAlarmClicked" />
+            </Frame>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
