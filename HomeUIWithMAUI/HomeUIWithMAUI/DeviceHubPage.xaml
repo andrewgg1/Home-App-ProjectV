@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeUIWithMAUI.DeviceHubPage"
+             Title="Device Hub">
+
+    <ContentPage.Content>
+        <Grid Padding="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0" Spacing="10">
+                <Label Text="Hub List" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                <CollectionView x:Name="HubCollectionView"
+                                ItemsSource="{Binding Hubs}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedHub, Mode=TwoWay}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Gray" Padding="10" Margin="5" CornerRadius="10">
+                                <Label Text="{Binding}" FontSize="18" />
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Spacing="10">
+                <Label Text="Device List" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                <CollectionView x:Name="DeviceCollectionView"
+                                ItemsSource="{Binding Devices}"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Gray" Padding="10" Margin="5" CornerRadius="10">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Label Text="{Binding Name}" FontSize="18" VerticalOptions="Center" />
+                                    <Button Text="Details" BackgroundColor="Blue" TextColor="White" Command="{Binding ShowDetailsCommand}" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
