@@ -6,17 +6,52 @@
 
     <ContentPage.Content>
         <ScrollView Padding="20">
-            <VerticalStackLayout Spacing="10">
+            <VerticalStackLayout Spacing="15">
                 <Label Text="Sensors" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
+                <!-- Motion Sensors -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                    <Label Text="Motion Sensor (Front Yard)" FontSize="18" />
-                    <Button Text="Enable/Disable" BackgroundColor="Blue" TextColor="White" Clicked="OnSensorToggleClicked" />
+                    <VerticalStackLayout>
+                        <Label Text="Motion Sensors (Front and Back Outdoor)" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="MotionSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnMotionSensorToggleClicked" />
+                    </VerticalStackLayout>
                 </Frame>
 
+                <!-- Glass Break Sensors -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                    <Label Text="Glass Break Sensor" FontSize="18" />
-                    <Button Text="Enable/Disable" BackgroundColor="Blue" TextColor="White" Clicked="OnSensorToggleClicked" />
+                    <VerticalStackLayout>
+                        <Label Text="Glass Break Sensors" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="GlassBreakSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnGlassBreakSensorToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Door and Window Sensors -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Door and Window Sensors" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="DoorWindowSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnDoorWindowSensorToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Garage Door Sensors -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Garage Door Sensors" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="GarageDoorSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnGarageDoorSensorToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Water Leak Sensors -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Water Leak Sensors" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="WaterLeakSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnWaterLeakSensorToggleClicked" />
+                    </VerticalStackLayout>
                 </Frame>
 
             </VerticalStackLayout>
