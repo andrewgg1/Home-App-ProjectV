@@ -69,6 +69,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="AlarmsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CamerasPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
