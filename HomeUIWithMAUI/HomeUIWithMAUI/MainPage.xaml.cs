@@ -10,11 +10,13 @@ namespace HomeUIWithMAUI
             InitializeComponent();
         }
 
+        // Event handler for toggling the smart bulb
         private void OnToggleLightClicked(object sender, EventArgs e)
         {
             WiproSmartBulbSwitch.IsToggled = !WiproSmartBulbSwitch.IsToggled;
         }
 
+        // Event handler for adjusting the thermostat
         private async void OnAdjustThermostatClicked(object sender, EventArgs e)
         {
             string result = await DisplayPromptAsync("Adjust Temperature", "Enter desired temperature (°F):", initialValue: "72", maxLength: 2, keyboard: Keyboard.Numeric);
@@ -24,9 +26,30 @@ namespace HomeUIWithMAUI
             }
         }
 
+        // Navigation to each hub page
         private async void OnOpenLocksPageClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DeviceHubPage());
+            await Navigation.PushAsync(new LocksPage());
+        }
+
+        private async void OnOpenSensorsPageClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SensorsPage());
+        }
+
+        private async void OnOpenCamerasPageClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CamerasPage());
+        }
+
+        private async void OnOpenAlarmsPageClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AlarmsPage());
+        }
+
+        private async void OnOpenTrackersPageClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TrackersPage());
         }
     }
 }

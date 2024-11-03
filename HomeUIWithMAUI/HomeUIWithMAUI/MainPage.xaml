@@ -21,8 +21,10 @@
         <!-- Main Content (Right Panel) -->
         <ScrollView Grid.Column="1" Padding="20">
             <VerticalStackLayout Spacing="25">
+
                 <!-- Devices Section -->
                 <Label Text="Devices" FontSize="24" FontAttributes="Bold" />
+
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
                     <VerticalStackLayout>
                         <Label Text="Smart Light - Status: On" FontSize="18" />
@@ -42,12 +44,42 @@
 
                 <!-- Device Hub Navigation -->
                 <Label Text="Device Hub" FontSize="24" FontAttributes="Bold" />
-                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
                     <VerticalStackLayout>
                         <Label Text="Locks" FontSize="18" />
                         <Button Text="Open Locks Page" BackgroundColor="Green" TextColor="White" Clicked="OnOpenLocksPageClicked" />
                     </VerticalStackLayout>
                 </Frame>
+
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+                    <VerticalStackLayout>
+                        <Label Text="Sensors" FontSize="18" />
+                        <Button Text="Open Sensors Page" BackgroundColor="Green" TextColor="White" Clicked="OnOpenSensorsPageClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+                    <VerticalStackLayout>
+                        <Label Text="Cameras" FontSize="18" />
+                        <Button Text="Open Cameras Page" BackgroundColor="Green" TextColor="White" Clicked="OnOpenCamerasPageClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+                    <VerticalStackLayout>
+                        <Label Text="Alarms" FontSize="18" />
+                        <Button Text="Open Alarms Page" BackgroundColor="Green" TextColor="White" Clicked="OnOpenAlarmsPageClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
+                    <VerticalStackLayout>
+                        <Label Text="Trackers" FontSize="18" />
+                        <Button Text="Open Trackers Page" BackgroundColor="Green" TextColor="White" Clicked="OnOpenTrackersPageClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
             </VerticalStackLayout>
         </ScrollView>
     </Grid>
