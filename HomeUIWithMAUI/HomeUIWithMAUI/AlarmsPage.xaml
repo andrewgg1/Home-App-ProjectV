@@ -18,7 +18,6 @@
                 <Button Text="Test Alarm" BackgroundColor="Red" TextColor="White" Clicked="OnTestAlarmClicked" />
             </Frame>
 
-            <!-- Add similar frames for other alarms as needed -->
 
         </VerticalStackLayout>
     </ScrollView>
