@@ -29,6 +29,6 @@ namespace HomeUIWithMAUI
         {
             isPetGPSTrackerOn = !isPetGPSTrackerOn;
             PetGPSTrackerStatus.Text = "Status: " + (isPetGPSTrackerOn ? "On" : "Off");
-        }
+        } //
     }
 }
