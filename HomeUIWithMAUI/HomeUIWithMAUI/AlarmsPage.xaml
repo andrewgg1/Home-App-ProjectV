@@ -6,17 +6,61 @@
 
     <ContentPage.Content>
         <ScrollView Padding="20">
-            <VerticalStackLayout Spacing="10">
+            <VerticalStackLayout Spacing="15">
                 <Label Text="Alarms" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
+                <!-- Fire/Smoke Detectors -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                    <Label Text="Fire/Smoke Detector" FontSize="18" />
-                    <Button Text="Test Alarm" BackgroundColor="Red" TextColor="White" Clicked="OnTestAlarmClicked" />
+                    <VerticalStackLayout>
+                        <Label Text="Fire/Smoke Detectors" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="FireSmokeDetectorStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Red" TextColor="White" Clicked="OnFireSmokeDetectorToggleClicked" />
+                    </VerticalStackLayout>
                 </Frame>
 
+                <!-- Carbon Monoxide (CO) Detectors -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                    <Label Text="Carbon Monoxide Detector" FontSize="18" />
-                    <Button Text="Test Alarm" BackgroundColor="Red" TextColor="White" Clicked="OnTestAlarmClicked" />
+                    <VerticalStackLayout>
+                        <Label Text="Carbon Monoxide (CO) Detectors" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="CODetectorStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Red" TextColor="White" Clicked="OnCODetectorToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Garage Alarm -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Garage Alarm" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="GarageAlarmStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Red" TextColor="White" Clicked="OnGarageAlarmToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Main House Alarm System -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Main House Alarm System" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="MainHouseAlarmStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Red" TextColor="White" Clicked="OnMainHouseAlarmToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Panic Buttons -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Panic Buttons" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="PanicButtonStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Red" TextColor="White" Clicked="OnPanicButtonToggleClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Flood/Water Alarm -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Flood/Water Alarm" FontSize="18" FontAttributes="Bold" />
+                        <Label x:Name="FloodWaterAlarmStatus" Text="Status: Off" FontSize="16" TextColor="Gray" />
+                        <Button Text="Activate/Deactivate" BackgroundColor="Red" TextColor="White" Clicked="OnFloodWaterAlarmToggleClicked" />
+                    </VerticalStackLayout>
                 </Frame>
 
             </VerticalStackLayout>
