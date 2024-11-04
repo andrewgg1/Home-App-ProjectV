@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomeUIWithMAUI.Models
+﻿namespace HomeUIWithMAUI.Models
 {
-    internal interface DeviceWithHub
+    public abstract class DeviceWithHub : Device
     {
+        public string HubName { get; set; }
+        public string HubId { get; set; }
+
+        protected DeviceWithHub(int id, string type, string name, string room, bool isOn, string hubName, string hubId)
+            : base(id, type, name, room, isOn)
+        {
+            HubName = hubName;
+            HubId = hubId;
+        }
     }
 }
+
