@@ -1,19 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomeUIWithMAUI.Models
+﻿namespace HomeUIWithMAUI.Models
 {
-    public class Thermostat
+    public class Thermostat : Device
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public double CurrentTemperature { get; set; }
         public double DesiredTemperature { get; set; }
         public string Mode { get; set; }
-        public bool IsOn { get; set; }
-        public DateTime LastUpdated { get; set; }
+
+        public Thermostat(int id, string name, string room, bool isOn, double currentTemp, double desiredTemp, string mode)
+            : base(id, "Thermostat", name, room, isOn)
+        {
+            CurrentTemperature = currentTemp;
+            DesiredTemperature = desiredTemp;
+            Mode = mode;
+        }
+
+        public void SetTemperature(double temperature)
+        {
+            DesiredTemperature = temperature;
+            LastUpdated = DateTime.Now;
+        }
+
+        public void SetMode(string mode)
+        {
+            Mode = mode;
+            LastUpdated = DateTime.Now;
+        }
     }
 }
