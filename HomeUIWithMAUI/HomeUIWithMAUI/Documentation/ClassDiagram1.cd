@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="HomeUIWithMAUI.Models.SmartLock">
-    <Position X="1" Y="6" Width="1.5" />
+    <Position X="1.5" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAQCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\SmartLock.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomeUIWithMAUI.Models.Thermostat">
-    <Position X="5.5" Y="5.5" Width="1.5" />
+    <Position X="10.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAQIA=</HashCode>
       <FileName>Models\Thermostat.cs</FileName>
@@ -29,45 +29,66 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HomeUIWithMAUI.Models.Device">
-    <Position X="6.5" Y="0.5" Width="1.5" />
+    <Position X="12.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAEAAAAAAAAABAAAAUAAQAAAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAABAAACUAAAAAAAAAAQAABAAAAAA=</HashCode>
       <FileName>Models\Device.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomeUIWithMAUI.Models.Dehumidifier">
-    <Position X="10" Y="5.5" Width="1.5" />
+    <Position X="15" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAIAAAgAAAQAACACBAAAACAAAEAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAACAAAAAAAAAEAQAAAASBAAAACAAAAAAAAQAAAAA=</HashCode>
       <FileName>Models\Dehumidifier.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomeUIWithMAUI.Models.Fridge">
-    <Position X="12.5" Y="5.5" Width="1.5" />
+    <Position X="17.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAEAAAAAAIAAAAAAAAAAAAAAAAAAAAQGA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAIAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Models\Fridge.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomeUIWithMAUI.Models.Vacuum">
-    <Position X="3.25" Y="5.5" Width="1.5" />
+    <Position X="8.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAGAAAAIAAAgAAAAAEAAAAAAAAAAAAEAAAACAAAAA=</HashCode>
       <FileName>Models\Vacuum.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomeUIWithMAUI.Models.Oven">
-    <Position X="7.75" Y="5.5" Width="1.5" />
+    <Position X="12.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAgAAAAAAAAAAAAEAAAAAIAAAAAAEBAA=</HashCode>
       <FileName>Models\Oven.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomeUIWithMAUI.Models.DeviceWithHub">
-    <Position X="1" Y="2.75" Width="1.5" />
+    <Position X="3.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Models\DeviceWithHub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomeUIWithMAUI.Models.SecurityAlarm">
+    <Position X="3.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAABAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SecurityAlarm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomeUIWithMAUI.Models.Sensor">
+    <Position X="5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Models\Sensor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HomeUIWithMAUI.Models.Tracker">
+    <Position X="6.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAgBAAAAAgAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Tracker.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

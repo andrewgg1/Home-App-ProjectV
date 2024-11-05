@@ -2,29 +2,36 @@
 {
     public abstract class Device
     {
-        public int Id { get; set; }
-        public string Type { get; set; }
+        public int HubId { get; set; }
+        public int DeviceId { get; set; }
+        //public string Type { get; set; }
         public string Name { get; set; }
-        public string Room { get; set; }
-        public bool IsOn { get; set; }
+        public State CurrentState { get; set; }
+        //public string Room { get; set; }
+        //public bool IsOn { get; set; }
         public DateTime LastUpdated { get; set; }
 
         // Optional constructor for base properties
-        protected Device(int id, string type, string name, string room, bool isOn)
+        protected Device(int DeviceId, int HubId, string name, State CurrentState)
         {
-            Id = id;
-            Type = type;
+            this.DeviceId = DeviceId;
+            this.HubId = HubId;
             Name = name;
-            Room = room;
-            IsOn = isOn;
+            this.CurrentState = CurrentState;
             LastUpdated = DateTime.Now;
         }
 
-        public virtual void UpdateStatus(bool isOn)
+        public virtual void UpdateState(State newState)
         {
-            IsOn = isOn;
+            this.CurrentState = newState;
             LastUpdated = DateTime.Now;
         }
+    }
+
+    public enum State
+    {
+        Off,
+        On
     }
 }
 
