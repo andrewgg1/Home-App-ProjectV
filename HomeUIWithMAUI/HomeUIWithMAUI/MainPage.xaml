@@ -37,9 +37,9 @@
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
                     <VerticalStackLayout>
                         <Label x:Name="ThermostatLabel" Text="Thermostat - Status: Off" FontSize="18" />
-                        <Label x:Name="ThermostatTemp" Text="Thermostat - Set temperature: 21°C" FontSize="18" />
+                        <Label x:Name="ThermostatTemp" Text="Thermostat - Set temperature: 20°C" FontSize="18" />
                         <Switch x:Name="ThermostatSwitch" IsToggled="False" Toggled="OnThermostatSwitchToggled"/>
-                        <Slider x:Name="ThermostatSlider" Maximum="28" Minimum="14" Value="21" ValueChanged="OnThermostatValueChanged" IsEnabled="False"/>
+                        <Slider x:Name="ThermostatSlider" Maximum="28" Minimum="14" Value="20" ValueChanged="OnThermostatValueChanged" IsEnabled="False"/>
                         <!--<Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatClicked" />-->
                     </VerticalStackLayout>
                 </Frame>

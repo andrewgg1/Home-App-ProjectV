@@ -13,7 +13,7 @@ namespace HomeUIWithMAUI
             InitializeComponent();
 
             // Begin listening for TCP connections
-            Listener listen = new Listener();
+            Listener listen = new Listener(this);
             listen.StartListening();
         }
 
@@ -33,6 +33,8 @@ namespace HomeUIWithMAUI
             }
         }
 
+        public Thermostat testThermostat = new Thermostat();
+
         private void OnThermostatSwitchToggled(object sender, ToggledEventArgs e)
         {
             testThermostat.IsOn = e.Value;
@@ -43,7 +45,7 @@ namespace HomeUIWithMAUI
 
         private void OnThermostatValueChanged(object sender, ValueChangedEventArgs e)
         {
-            testThermostat.DesiredTemperature = e.NewValue;
+            testThermostat.DesiredTemperature = (int)e.NewValue;
             ThermostatTemp.Text = $"Thermostat - Set temperature: {(int)testThermostat.DesiredTemperature}°C";
             Trace.WriteLine($"Thermostat desired temperature: {testThermostat.DesiredTemperature}");
         }

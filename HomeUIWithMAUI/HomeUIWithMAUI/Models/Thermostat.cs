@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace HomeUIWithMAUI.Models
 {
     public class Thermostat
     {
         private static Random random = new Random();
+        private System.Timers.Timer temperatureAdjustmentTimer;
+
+        private struct ThermostatMode
+        {
+            public const string Heat = "Heat";
+            public const string Cool = "Cool";
+            public const string Off = "Off";
+        }
 
         private string id = GenerateRandomId();
-        private string name = "Default Thermostat";
-        private double currentTemperature = 20.0;
-        private double desiredTemperature = 22.0;
-        private string mode = "Off";
+        private string name = "Ground Floor Thermostat";
+        private int currentTemperature = 20;
+        private int desiredTemperature = 20;
+        private int roomTemperature = 20;
+        private string mode = ThermostatMode.Off;
         private bool isOn = false;
         private DateTime lastUpdated = DateTime.Now;
 
@@ -38,7 +48,7 @@ namespace HomeUIWithMAUI.Models
             }
         }
 
-        public double CurrentTemperature
+        public int CurrentTemperature
         {
             get => currentTemperature;
             set
@@ -48,13 +58,17 @@ namespace HomeUIWithMAUI.Models
             }
         }
 
-        public double DesiredTemperature
+        public int DesiredTemperature
         {
             get => desiredTemperature;
             set
             {
                 desiredTemperature = value;
                 UpdateLastUpdated();
+                if (IsOn)
+                {
+                    StartTemperatureAdjustment();
+                }
             }
         }
 
@@ -65,6 +79,10 @@ namespace HomeUIWithMAUI.Models
             {
                 mode = value;
                 UpdateLastUpdated();
+                if (mode == ThermostatMode.Off && !isOn)
+                {
+                    StartReturningToRoomTemperature();
+                }
             }
         }
 
@@ -75,6 +93,15 @@ namespace HomeUIWithMAUI.Models
             {
                 isOn = value;
                 UpdateLastUpdated();
+                if (isOn)
+                {
+                    StartTemperatureAdjustment();
+                }
+                else
+                {
+                    Mode = ThermostatMode.Off;
+                    StartReturningToRoomTemperature();
+                }
             }
         }
 
@@ -94,6 +121,78 @@ namespace HomeUIWithMAUI.Models
         private void UpdateLastUpdated()
         {
             LastUpdated = DateTime.Now;
+        }
+
+        private void StartReturningToRoomTemperature()
+        {
+            if (temperatureAdjustmentTimer != null)
+            {
+                temperatureAdjustmentTimer.Stop();
+                temperatureAdjustmentTimer.Dispose();
+            }
+
+            temperatureAdjustmentTimer = new System.Timers.Timer(3000); // 3 seconds per degree
+            temperatureAdjustmentTimer.Elapsed += ReturnToRoomTemperature;
+            temperatureAdjustmentTimer.Start();
+        }
+
+        private void ReturnToRoomTemperature(object sender, ElapsedEventArgs e)
+        {
+            if (Math.Abs(CurrentTemperature - roomTemperature) < 1)
+            {
+                CurrentTemperature = roomTemperature;
+                temperatureAdjustmentTimer.Stop();
+                temperatureAdjustmentTimer.Dispose();
+                return;
+            }
+
+            if (CurrentTemperature < roomTemperature)
+            {
+                CurrentTemperature += 1;
+            }
+            else if (CurrentTemperature > roomTemperature)
+            {
+                CurrentTemperature -= 1;
+            }
+
+            UpdateLastUpdated();
+        }
+
+        private void StartTemperatureAdjustment()
+        {
+            if (temperatureAdjustmentTimer != null)
+            {
+                temperatureAdjustmentTimer.Stop();
+                temperatureAdjustmentTimer.Dispose();
+            }
+
+            temperatureAdjustmentTimer = new System.Timers.Timer(3000); // 3 seconds per degree
+            temperatureAdjustmentTimer.Elapsed += AdjustTemperature;
+            temperatureAdjustmentTimer.Start();
+        }
+
+        private void AdjustTemperature(object sender, ElapsedEventArgs e)
+        {
+            if (Math.Abs(CurrentTemperature - DesiredTemperature) < 1)
+            {
+                CurrentTemperature = DesiredTemperature;
+                temperatureAdjustmentTimer.Stop();
+                temperatureAdjustmentTimer.Dispose();
+                return;
+            }
+
+            if (CurrentTemperature < DesiredTemperature)
+            {
+                Mode = ThermostatMode.Heat;
+                CurrentTemperature += 1;
+            }
+            else if (CurrentTemperature > DesiredTemperature)
+            {
+                Mode = ThermostatMode.Cool;
+                CurrentTemperature -= 1;
+            }
+
+            UpdateLastUpdated();
         }
     }
 }

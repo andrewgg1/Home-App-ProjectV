@@ -10,10 +10,14 @@ namespace HomeUIWithMAUI.TCP
     // This class is responsible for listening for incoming connections and sending messages
     internal class Listener
     {
+        private MainPage _mainPage;
+        public Listener(MainPage mainPage)
+        {
+            _mainPage = mainPage;
+        }
+
         async internal void StartListening()
         {
-            Thermostat testThermostat = new Thermostat();
-            string jsonData = Utilities.DataPackage.PackData(testThermostat);
             Trace.WriteLine("Starting...");
             var ipEndPoint = new IPEndPoint(IPAddress.Any, 8100);
             TcpListener listener = new(ipEndPoint);
@@ -26,7 +30,7 @@ namespace HomeUIWithMAUI.TCP
                 {
                     Trace.WriteLine("Accepting Clients...");
                     TcpClient handler = await listener.AcceptTcpClientAsync();
-                    _ = HandleClientAsync(handler, jsonData); // Start a new task to handle the client
+                    _ = HandleClientAsync(handler); // Start a new task to handle the client
                 }
                 catch (Exception ex)
                 {
@@ -35,7 +39,7 @@ namespace HomeUIWithMAUI.TCP
             }
         }
 
-        private async Task HandleClientAsync(TcpClient handler, string stringMessage)
+        private async Task HandleClientAsync(TcpClient handler)//, string stringMessage)
         {
             IPEndPoint clientEndPoint = null;
             try
@@ -55,8 +59,7 @@ namespace HomeUIWithMAUI.TCP
 
                 while (true)
                 {
-                    //var message = $"{DateTime.Now}";
-                    //var dateTimeBytes = Encoding.UTF8.GetBytes(message);
+                    string stringMessage = Utilities.DataPackage.PackData(_mainPage.testThermostat);
                     var byteMessage = Encoding.UTF8.GetBytes(stringMessage);
                     await stream.WriteAsync(byteMessage);
 
