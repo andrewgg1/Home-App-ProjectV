@@ -40,5 +40,21 @@ namespace HomeAppTests.Models
             Assert.True(smartLock.IsOn);
             Assert.True(smartLock.LastUpdated > DateTime.Now.AddMinutes(-1)); // Check if LastUpdated is recent
         }
+
+        // Lock and unlock functionality
+        [Fact]
+        public void SmartLock_LockAndUnlock_ChangesStateCorrectly()
+        {
+            var smartLock = new SmartLock(1, "Smart Lock", "Front Door Lock", true, "Main Hub", "Hub001", false)
+            {
+                Room = "Entrance"
+            };
+
+            smartLock.Lock(); // Implement a Lock() method in SmartLock
+            Assert.True(smartLock.IsLocked);
+
+            smartLock.Unlock(); // Implement an Unlock() method in SmartLock
+            Assert.False(smartLock.IsLocked);
+        }
     }
 }
