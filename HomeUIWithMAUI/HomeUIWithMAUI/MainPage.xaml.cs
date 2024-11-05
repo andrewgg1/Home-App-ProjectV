@@ -1,13 +1,25 @@
 ﻿using Microsoft.Maui.Controls;
+using Connetion;
+
 using System;
 
 namespace HomeUIWithMAUI
 {
     public partial class MainPage : ContentPage
     {
+        private readonly HighCapacityTcpServer _tcpServer;
         public MainPage()
         {
             InitializeComponent();
+            _tcpServer = new HighCapacityTcpServer();
+
+            // Start the TCP server asynchronously
+            StartServerAsync();
+        }
+
+        private async Task StartServerAsync()
+        {
+            await Task.Run(() => _tcpServer.StartServerAsync()); // Run server in a background task
         }
 
         // Event handler for adjusting the thermostat temperature
