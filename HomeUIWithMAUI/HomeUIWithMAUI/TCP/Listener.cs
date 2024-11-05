@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using HomeUIWithMAUI.Models;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -11,6 +12,8 @@ namespace HomeUIWithMAUI.TCP
     {
         async internal void StartListening()
         {
+            Thermostat testThermostat = new Thermostat();
+            string jsonData = Utilities.DataPackage.PackData(testThermostat);
             Trace.WriteLine("Starting...");
             var ipEndPoint = new IPEndPoint(IPAddress.Any, 8100);
             TcpListener listener = new(ipEndPoint);
@@ -23,7 +26,7 @@ namespace HomeUIWithMAUI.TCP
                 {
                     Trace.WriteLine("Accepting Clients...");
                     TcpClient handler = await listener.AcceptTcpClientAsync();
-                    _ = HandleClientAsync(handler); // Start a new task to handle the client
+                    _ = HandleClientAsync(handler, jsonData); // Start a new task to handle the client
                 }
                 catch (Exception ex)
                 {
@@ -32,11 +35,12 @@ namespace HomeUIWithMAUI.TCP
             }
         }
 
-        private async Task HandleClientAsync(TcpClient handler)
+        private async Task HandleClientAsync(TcpClient handler, string stringMessage)
         {
+            IPEndPoint clientEndPoint = null;
             try
             {
-                var clientEndPoint = handler.Client.RemoteEndPoint as IPEndPoint;
+                clientEndPoint = handler.Client.RemoteEndPoint as IPEndPoint;
                 if (clientEndPoint != null)
                 {
                     Trace.WriteLine($"Client connected: {clientEndPoint.Address}:{clientEndPoint.Port}");
@@ -51,11 +55,12 @@ namespace HomeUIWithMAUI.TCP
 
                 while (true)
                 {
-                    var message = $"{DateTime.Now}";
-                    var dateTimeBytes = Encoding.UTF8.GetBytes(message);
-                    await stream.WriteAsync(dateTimeBytes);
+                    //var message = $"{DateTime.Now}";
+                    //var dateTimeBytes = Encoding.UTF8.GetBytes(message);
+                    var byteMessage = Encoding.UTF8.GetBytes(stringMessage);
+                    await stream.WriteAsync(byteMessage);
 
-                    Trace.WriteLine($"Sent message: \"{message}\"");
+                    Trace.WriteLine($"Sent message: \"{stringMessage}\"");
                     await Task.Delay(1000);
                 }
             }
@@ -65,7 +70,10 @@ namespace HomeUIWithMAUI.TCP
             }
             finally
             {
-                Trace.WriteLine($"Client disconnected");
+                if (clientEndPoint != null)
+                    Trace.WriteLine($"Client disconnected: {clientEndPoint.Address}:{clientEndPoint.Port}");
+                else
+                    Trace.WriteLine("Client disconnected");
                 handler.Close();
             }
         }

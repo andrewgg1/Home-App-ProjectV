@@ -1,6 +1,8 @@
+using HomeUIWithMAUI.Models;
 using HomeUIWithMAUI.TCP;
 using Microsoft.Maui.Controls;
 using System;
+using System.Diagnostics;
 
 namespace HomeUIWithMAUI
 {
@@ -31,11 +33,28 @@ namespace HomeUIWithMAUI
             }
         }
 
+        private void OnThermostatSwitchToggled(object sender, ToggledEventArgs e)
+        {
+            testThermostat.IsOn = e.Value;
+            ThermostatSlider.IsEnabled = testThermostat.IsOn;
+            ThermostatLabel.Text = $"Thermostat - Status: {(testThermostat.IsOn ? "On" : "Off")}";
+            Trace.WriteLine($"Thermostat is on: {testThermostat.IsOn}");
+        }
+
+        private void OnThermostatValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            testThermostat.DesiredTemperature = e.NewValue;
+            ThermostatTemp.Text = $"Thermostat - Set temperature: {(int)testThermostat.DesiredTemperature}°C";
+            Trace.WriteLine($"Thermostat desired temperature: {testThermostat.DesiredTemperature}");
+        }
+
         // Navigation to each hub page
         private async void OnOpenLocksPageClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new LocksPage());
         }
+
+        private Thermostat testThermostat = new Thermostat();
 
         private async void OnOpenSensorsPageClicked(object sender, EventArgs e)
         {

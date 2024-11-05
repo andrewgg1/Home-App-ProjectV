@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HomeUIWithMAUI.MainPage"
@@ -36,9 +36,11 @@
                 <!-- Thermostat Section -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
                     <VerticalStackLayout>
-                        <Label Text="Thermostat - Status: 72°F" FontSize="18" />
-                        <Switch x:Name="ThermostatSwitch" IsToggled="False" />
-                        <Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatClicked" />
+                        <Label x:Name="ThermostatLabel" Text="Thermostat - Status: Off" FontSize="18" />
+                        <Label x:Name="ThermostatTemp" Text="Thermostat - Set temperature: 21°C" FontSize="18" />
+                        <Switch x:Name="ThermostatSwitch" IsToggled="False" Toggled="OnThermostatSwitchToggled"/>
+                        <Slider x:Name="ThermostatSlider" Maximum="28" Minimum="14" Value="21" ValueChanged="OnThermostatValueChanged" IsEnabled="False"/>
+                        <!--<Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatClicked" />-->
                     </VerticalStackLayout>
                 </Frame>
 

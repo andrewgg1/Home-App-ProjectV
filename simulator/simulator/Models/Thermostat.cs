@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeUIWithMAUI.Models
+namespace simulator.Models
 {
     public class Thermostat
     {
@@ -23,6 +23,20 @@ namespace HomeUIWithMAUI.Models
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, 16)
               .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public void PrintDetails()
+        {
+            // clear screen
+            Console.Clear();
+            Console.WriteLine("Thermostat Details:");
+            Console.WriteLine($"ID: {Id}");
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Current Temperature: {CurrentTemperature}°C");
+            Console.WriteLine($"Desired Temperature: {DesiredTemperature}°C");
+            Console.WriteLine($"Mode: {Mode}");
+            Console.WriteLine($"Is On: {IsOn}");
+            Console.WriteLine($"Last Updated: {LastUpdated}");
         }
     }
 }

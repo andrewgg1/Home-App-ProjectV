@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace simulator
+namespace simulator.TCP
 {
     // Listener class
     // This class is responsible for listening for incoming connections and sending messages
