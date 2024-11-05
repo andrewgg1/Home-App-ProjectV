@@ -22,28 +22,51 @@ namespace HomeUIWithMAUI.TCP
                 try
                 {
                     Trace.WriteLine("Accepting Clients...");
-                    using TcpClient handler = await listener.AcceptTcpClientAsync();
-                    await using NetworkStream stream = handler.GetStream();
-                    while (true)
-                    {
-                        var message = $"{DateTime.Now}";
-                        var dateTimeBytes = Encoding.UTF8.GetBytes(message);
-                        await stream.WriteAsync(dateTimeBytes);
-
-                        Trace.WriteLine($"Sent message: \"{message}\"");
-                        // Sample output:
-                        //     Sent message: "📅 8/22/2022 9:07:17 AM 🕛"
-                        await Task.Delay(1000);
-                    }
+                    TcpClient handler = await listener.AcceptTcpClientAsync();
+                    _ = HandleClientAsync(handler); // Start a new task to handle the client
                 }
                 catch (Exception ex)
                 {
                     Trace.WriteLine($"Error: {ex.Message}");
                 }
-                finally
+            }
+        }
+
+        private async Task HandleClientAsync(TcpClient handler)
+        {
+            try
+            {
+                var clientEndPoint = handler.Client.RemoteEndPoint as IPEndPoint;
+                if (clientEndPoint != null)
                 {
-                    //listener.Stop();
+                    Trace.WriteLine($"Client connected: {clientEndPoint.Address}:{clientEndPoint.Port}");
                 }
+
+                await using NetworkStream stream = handler.GetStream();
+
+                var buffer = new byte[1_024];
+                int received = await stream.ReadAsync(buffer);
+                var receivedMessage = Encoding.UTF8.GetString(buffer, 0, received);
+                Trace.WriteLine($"Message received: \"{receivedMessage}\"");
+
+                while (true)
+                {
+                    var message = $"{DateTime.Now}";
+                    var dateTimeBytes = Encoding.UTF8.GetBytes(message);
+                    await stream.WriteAsync(dateTimeBytes);
+
+                    Trace.WriteLine($"Sent message: \"{message}\"");
+                    await Task.Delay(1000);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine($"Error: {ex.Message}");
+            }
+            finally
+            {
+                Trace.WriteLine($"Client disconnected");
+                handler.Close();
             }
         }
     }
