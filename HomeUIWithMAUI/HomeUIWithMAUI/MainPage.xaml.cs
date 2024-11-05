@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls;
+using HomeUIWithMAUI.TCP;
+using Microsoft.Maui.Controls;
 using System;
 
 namespace HomeUIWithMAUI
@@ -8,6 +9,10 @@ namespace HomeUIWithMAUI
         public MainPage()
         {
             InitializeComponent();
+
+            // Begin listening for TCP connections
+            Listener listen = new Listener();
+            listen.StartListening();
         }
 
         // Event handler for toggling the smart bulb

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace HomeUIWithMAUI
 {
@@ -16,7 +17,8 @@ namespace HomeUIWithMAUI
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            Trace.WriteLine("Hello from MauiProgram!");
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
