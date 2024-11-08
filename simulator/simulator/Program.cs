@@ -9,8 +9,20 @@ namespace simulator
     {
         private static void Main(string[] args)
         {
+            string ipHost = "";
+            while (true)
+            {
+                Console.WriteLine("Enter the IP of the Host:");
+                ipHost = Console.ReadLine();
+
+                // Validate the IP address
+                if (IPAddress.TryParse(ipHost, out _))
+                {
+                    break;
+                }
+            }
             Client newClient = new Client();
-            newClient.StartClient();
+            newClient.StartClient(ipHost);
 
             Console.WriteLine("Press space bar to exit");
 
