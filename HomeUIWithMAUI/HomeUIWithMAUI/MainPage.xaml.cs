@@ -51,5 +51,15 @@ namespace HomeUIWithMAUI
         {
             await Navigation.PushAsync(new TrackersPage());
         }
+
+        private async void OnLogoutClicked(object sender, EventArgs e)
+        {
+            bool confirm = await DisplayAlert("Logout", "Are you sure you want to log out?", "Yes", "No");
+            if (confirm)
+            {
+                await Navigation.PopToRootAsync();
+            }
+        }
+
     }
 }

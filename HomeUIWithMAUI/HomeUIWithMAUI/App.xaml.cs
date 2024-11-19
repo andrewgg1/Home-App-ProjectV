@@ -6,7 +6,8 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            var userService = new UserService(); // Shared instance of UserService
+            MainPage = new NavigationPage(new LoginPage(userService));
         }
     }
 }
