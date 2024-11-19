@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using HomeUIWithMAUI.Utilities;
 
 namespace HomeUIWithMAUI.Connection
 {
@@ -37,7 +38,7 @@ namespace HomeUIWithMAUI.Connection
 
         private async Task HandleClientAsync(TcpClient client)
         {
-            using (client) // Ensures resources are disposed when done
+            using (client) 
             {
                 NetworkStream stream = client.GetStream();
                 byte[] buffer = new byte[1024];
@@ -55,11 +56,13 @@ namespace HomeUIWithMAUI.Connection
                         // Check if the received message matches any known format
                         bool isValid = ValidateMessageFormat(receivedMessage);
                         string responseMessage = isValid ? "1" : "0";
+                        if (isValid) {
+                            Utilities.DataPackage.PackData(receivedMessage);
+                        }
 
                         // Send validation result back to the client
                         byte[] responseData = Encoding.UTF8.GetBytes(responseMessage);
                         await stream.WriteAsync(responseData, 0, responseData.Length);
-                        Console.WriteLine($"Sent to client: {responseMessage}");
                     }
                 }
                 catch (Exception ex)
