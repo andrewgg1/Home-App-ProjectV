@@ -56,7 +56,7 @@ namespace HomeUIWithMAUI
             await Navigation.PushAsync(new LocksPage());
         }
 
-        private Thermostat testThermostat = new Thermostat();
+        //private Thermostat testThermostat = new Thermostat();
 
         private async void OnOpenSensorsPageClicked(object sender, EventArgs e)
         {
