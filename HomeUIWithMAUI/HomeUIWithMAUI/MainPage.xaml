@@ -1,10 +1,9 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HomeUIWithMAUI.MainPage"
              BackgroundColor="White">
 
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -17,6 +16,11 @@
             <Label Text="Home" FontSize="18" FontAttributes="Bold" />
             <Label Text="Devices" FontSize="18" FontAttributes="Bold" />
             <Label Text="Device Hub" FontSize="18" FontAttributes="Bold" />
+            <Button Text="Logout"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Margin="0,30,0,0"
+                    Clicked="OnLogoutClicked" />
         </StackLayout>
 
         <!-- Main Content (Right Panel) -->

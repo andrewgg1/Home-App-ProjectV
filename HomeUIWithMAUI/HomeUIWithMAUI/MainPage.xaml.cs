@@ -22,7 +22,7 @@ namespace HomeUIWithMAUI
             string result = await DisplayPromptAsync("Adjust Temperature", "Enter desired temperature (°F):", initialValue: "72", maxLength: 2, keyboard: Keyboard.Numeric);
             if (int.TryParse(result, out int newTemperature))
             {
-                DisplayAlert("Temperature Updated", $"Thermostat set to {newTemperature}°F", "OK");
+                await DisplayAlert("Temperature Updated", $"Thermostat set to {newTemperature}°F", "OK");
             }
         }
 
@@ -52,14 +52,14 @@ namespace HomeUIWithMAUI
             await Navigation.PushAsync(new TrackersPage());
         }
 
+        // Logout Event Handler
         private async void OnLogoutClicked(object sender, EventArgs e)
         {
             bool confirm = await DisplayAlert("Logout", "Are you sure you want to log out?", "Yes", "No");
             if (confirm)
             {
-                await Navigation.PopToRootAsync();
+                await Navigation.PopToRootAsync(); // Navigate back to the root (LoginPage/RegistrationPage)
             }
         }
-
     }
 }
