@@ -18,19 +18,19 @@
         {
             Temperature = targetTemperature;
             Mode = "Preheat";
-            UpdateStatus(true);
+            UpdateState(State.On);
         }
 
         public void SetMode(string mode)
         {
             Mode = mode;
-            UpdateStatus(true);
+            UpdateState(State.On);
         }
 
         public void SetTimer(int minutes)
         {
             Timer = minutes;
-            UpdateStatus(IsOn);
+            UpdateState(State.On);
         }
 
         public void Stop()
@@ -38,7 +38,7 @@
             Temperature = 0;
             Mode = "Off";
             Timer = 0;
-            UpdateStatus(false);
+            UpdateState(State.On);
         }
     }
 }

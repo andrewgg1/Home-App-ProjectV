@@ -29,21 +29,21 @@
         public void Dock(bool docked)
         {
             IsDocked = docked;
-            UpdateStatus(!docked); // If docked, it's off. If not docked, it's on.
+            UpdateState(docked ? State.Off : State.On); // If docked, it's off. If not docked, it's on.
         }
 
         public void StartCleaning()
         {
             if (BatteryLevel > 0 && IsDocked == false)
             {
-                IsOn = true;
+                UpdateState(State.On);
                 LastUpdated = DateTime.Now;
             }
         }
 
         public void StopCleaning()
         {
-            IsOn = false;
+            UpdateState(State.Off);
             LastUpdated = DateTime.Now;
         }
     }

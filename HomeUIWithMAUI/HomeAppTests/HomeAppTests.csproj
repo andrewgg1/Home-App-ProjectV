@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 	<!-- Change to match main app -->
-	<TargetFramework>net8.0-android</TargetFramework>
+	<TargetFramework>net8.0-windows</TargetFramework>
 	<ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -17,7 +17,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.10" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-    <PackageReference Include="xunit" Version="2.9.2" />
+	<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
+	<!-- Add other MAUI dependencies if needed -->
+	  <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

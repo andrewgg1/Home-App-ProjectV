@@ -5,8 +5,9 @@
         public int Id { get; set; }
         public string Type { get; set; }
         public string Name { get; set; }
+        public State CurrentState { get; set; }
         public string Room { get; set; }
-        public bool IsOn { get; set; }
+        //public bool IsOn { get; set; }
         public DateTime LastUpdated { get; set; }
 
         // Optional constructor for base properties
@@ -16,15 +17,22 @@
             Type = type;
             Name = name;
             Room = room;
-            IsOn = isOn;
+            CurrentState = State.Off;
             LastUpdated = DateTime.Now;
         }
 
-        public virtual void UpdateStatus(bool isOn)
+        public virtual void UpdateState(State newState)
         {
-            IsOn = isOn;
+            CurrentState = newState;
             LastUpdated = DateTime.Now;
         }
+    }
+
+    public enum State
+    {
+        Charging,
+        On,
+        Off
     }
 }
 
