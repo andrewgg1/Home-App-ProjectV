@@ -11,19 +11,29 @@ builder.Services.AddSwaggerGen(); // Enable Swagger for API testing
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// Dynamically bind to the correct URLs based on the environment
 if (app.Environment.IsDevelopment())
 {
+    // Development: Use the default Kestrel settings (localhost)
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1 (Development)");
+    });
+}
+else
+{
+    // Production (e.g., Docker): Bind to all network interfaces
+    app.Urls.Add("http://0.0.0.0:80"); // Required for Docker
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1 (Production)");
+        c.RoutePrefix = string.Empty; // Serve Swagger at root (http://localhost:8080/)
     });
 }
 
-app.UseHttpsRedirection(); // Redirect HTTP to HTTPS (optional)
-app.UseAuthorization(); // Authorization middleware
-
-app.MapControllers(); // Map controller endpoints
-
-app.Run(); // Run the application
+app.UseHttpsRedirection(); // Optional: Redirect HTTP to HTTPS
+app.UseAuthorization();
+app.MapControllers();
+app.Run();
