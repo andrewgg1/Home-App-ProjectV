@@ -7,8 +7,8 @@
         //public bool DoorOpen { get; set; }
         //public bool IsCooling { get; set; }
 
-        public Fridge(int id, string name, string room)
-            : base(id, "Fridge", name, room, isOn: true)
+        public Fridge(int id, string name)
+            : base(id, "Fridge", State.On)
         {
             FridgeTemperature = 4.0; // Assumption: Default fridge temp in °C
             FreezerTemperature = -2.0;
@@ -16,10 +16,10 @@
             //IsCooling = true;
         }
 
-        public void UpdateTemperature(double currentTemp, double targetTemp)
+        public void UpdateTemperature(double FridgeTemp, double FreezerTemp)
         {
-            FridgeTemperature = currentTemp;
-            FreezerTemperature = targetTemp;
+            FridgeTemperature = FridgeTemp;
+            FreezerTemperature = FreezerTemp;
             LastUpdated = DateTime.Now;
         }
 

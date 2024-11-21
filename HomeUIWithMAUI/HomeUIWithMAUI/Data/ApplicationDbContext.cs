@@ -11,10 +11,10 @@ namespace HomeUIWithMAUI.Data
         public DbSet<SecurityAlarm> SecurityAlarms { get; set; }
         public DbSet<SecurityCamera> SecurityCameras { get; set; }
         public DbSet<Tracker> Trackers { get; set; }
-        public DbSet<Vacuum> Vacuums { get; set; }
         public DbSet<Dehumidifier> Dehumidifiers { get; set; }
-        public DbSet<Oven> Ovens { get; set; }
         public DbSet<Fridge> Fridges { get; set; }
+        //public DbSet<Vacuum> Vacuums { get; set; }
+        //public DbSet<Oven> Ovens { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
