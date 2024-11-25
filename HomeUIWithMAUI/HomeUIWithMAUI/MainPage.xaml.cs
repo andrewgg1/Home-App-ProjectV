@@ -53,5 +53,40 @@ namespace HomeUIWithMAUI
             WaterLevelLabel.Text = $"{waterLevel}%";
             HumidityLabel.Text = $"{humidity}%";
         }
+
+        // Navigation to Locks Page
+        private async void OnOpenLocksPageClicked(object sender, EventArgs e)
+        {
+            // Placeholder for navigation logic
+            await Navigation.PushAsync(new LocksPage());
+        }
+
+        // Navigation to Sensors Page
+        private async void OnOpenSensorsPageClicked(object sender, EventArgs e)
+        {
+            // Placeholder for navigation logic
+            await Navigation.PushAsync(new SensorsPage());
+        }
+
+        // Navigation to Cameras Page
+        private async void OnOpenCamerasPageClicked(object sender, EventArgs e)
+        {
+            // Placeholder for navigation logic
+            await Navigation.PushAsync(new CamerasPage());
+        }
+
+        // Navigation to Alarms Page
+        private async void OnOpenAlarmsPageClicked(object sender, EventArgs e)
+        {
+            // Placeholder for navigation logic
+            await Navigation.PushAsync(new AlarmsPage());
+        }
+
+        // Navigation to Trackers Page
+        private async void OnOpenTrackersPageClicked(object sender, EventArgs e)
+        {
+            // Placeholder for navigation logic
+            await Navigation.PushAsync(new TrackersPage());
+        }
     }
 }
