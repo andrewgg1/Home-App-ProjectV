@@ -30,7 +30,7 @@
                     <VerticalStackLayout>
                         <Label Text="Thermostat - Status: 72°F" FontSize="18" />
                         <Switch x:Name="ThermostatSwitch" IsToggled="False" />
-                        <Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatClicked" />
+                        <Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatTemperature" />
                     </VerticalStackLayout>
                 </Frame>
 
