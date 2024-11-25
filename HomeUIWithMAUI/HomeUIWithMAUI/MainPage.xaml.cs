@@ -10,6 +10,18 @@ namespace HomeUIWithMAUI
             InitializeComponent();
         }
 
+        // Event handler for adjusting the thermostat temperature
+        private async void OnAdjustThermostatTemperature(object sender, EventArgs e)
+        {
+            string result = await DisplayPromptAsync("Adjust Temperature", "Enter desired temperature (°C):", initialValue: "22", maxLength: 2, keyboard: Keyboard.Numeric);
+            if (int.TryParse(result, out int newTemperature))
+            {
+                // Placeholder for integration with Home Business Layer
+                // Example: Call a method to update the thermostat temperature
+                DisplayAlert("Thermostat Updated", $"Thermostat set to {newTemperature}°C.", "OK");
+            }
+        }
+
         // Event handler for toggling Fridge Power
         private void OnToggleFridgePower(object sender, EventArgs e)
         {
