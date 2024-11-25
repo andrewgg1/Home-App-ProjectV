@@ -25,14 +25,6 @@
                 <!-- Devices Section -->
                 <Label Text="Devices" FontSize="24" FontAttributes="Bold" />
 
-                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                    <VerticalStackLayout>
-                        <Label Text="Smart Light - Status: On" FontSize="18" />
-                        <Switch x:Name="WiproSmartBulbSwitch" IsToggled="True" />
-                        <Button Text="Turn Off" BackgroundColor="Red" TextColor="White" Clicked="OnToggleLightClicked" />
-                    </VerticalStackLayout>
-                </Frame>
-
                 <!-- Thermostat Section -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
                     <VerticalStackLayout>
