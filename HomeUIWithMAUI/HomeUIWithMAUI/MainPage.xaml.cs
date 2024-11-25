@@ -10,46 +10,36 @@ namespace HomeUIWithMAUI
             InitializeComponent();
         }
 
-        // Event handler for toggling the smart bulb
-        private void OnToggleLightClicked(object sender, EventArgs e)
+        // Event handler for toggling Fridge Power
+        private void OnToggleFridgePower(object sender, EventArgs e)
         {
-            WiproSmartBulbSwitch.IsToggled = !WiproSmartBulbSwitch.IsToggled;
+            bool isOn = FridgeSwitch.IsToggled;
+            // Placeholder for integration with Home Business Layer
+            // Example: Call a method to update the fridge power state
+            DisplayAlert("Fridge Power", $"Fridge is now {(isOn ? "On" : "Off")}.", "OK");
         }
 
-        // Event handler for adjusting the thermostat
-        private async void OnAdjustThermostatClicked(object sender, EventArgs e)
+        // Event handler for toggling Dehumidifier Power
+        private void OnToggleDehumidifierPower(object sender, EventArgs e)
         {
-            string result = await DisplayPromptAsync("Adjust Temperature", "Enter desired temperature (°F):", initialValue: "72", maxLength: 2, keyboard: Keyboard.Numeric);
-            if (int.TryParse(result, out int newTemperature))
-            {
-                DisplayAlert("Temperature Updated", $"Thermostat set to {newTemperature}°F", "OK");
-            }
+            bool isOn = DehumidifierSwitch.IsToggled;
+            // Placeholder for integration with Home Business Layer
+            // Example: Call a method to update the dehumidifier power state
+            DisplayAlert("Dehumidifier Power", $"Dehumidifier is now {(isOn ? "On" : "Off")}.", "OK");
         }
 
-        // Navigation to each hub page
-        private async void OnOpenLocksPageClicked(object sender, EventArgs e)
+        // Method to update Fridge data (to be called by the Home Business Layer)
+        public void UpdateFridgeData(int fridgeTemp, int freezerTemp)
         {
-            await Navigation.PushAsync(new LocksPage());
+            FridgeTempLabel.Text = $"{fridgeTemp}°C";
+            FreezerTempLabel.Text = $"{freezerTemp}°C";
         }
 
-        private async void OnOpenSensorsPageClicked(object sender, EventArgs e)
+        // Method to update Dehumidifier data (to be called by the Home Business Layer)
+        public void UpdateDehumidifierData(int waterLevel, int humidity)
         {
-            await Navigation.PushAsync(new SensorsPage());
-        }
-
-        private async void OnOpenCamerasPageClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new CamerasPage());
-        }
-
-        private async void OnOpenAlarmsPageClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AlarmsPage());
-        }
-
-        private async void OnOpenTrackersPageClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new TrackersPage());
+            WaterLevelLabel.Text = $"{waterLevel}%";
+            HumidityLabel.Text = $"{humidity}%";
         }
     }
 }
