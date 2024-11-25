@@ -25,20 +25,50 @@
                 <!-- Devices Section -->
                 <Label Text="Devices" FontSize="24" FontAttributes="Bold" />
 
-                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                    <VerticalStackLayout>
-                        <Label Text="Smart Light - Status: On" FontSize="18" />
-                        <Switch x:Name="WiproSmartBulbSwitch" IsToggled="True" />
-                        <Button Text="Turn Off" BackgroundColor="Red" TextColor="White" Clicked="OnToggleLightClicked" />
-                    </VerticalStackLayout>
-                </Frame>
-
                 <!-- Thermostat Section -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
                     <VerticalStackLayout>
                         <Label Text="Thermostat - Status: 72°F" FontSize="18" />
                         <Switch x:Name="ThermostatSwitch" IsToggled="False" />
-                        <Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatClicked" />
+                        <Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatTemperature" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Fridge Section -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Smart Fridge" FontSize="20" />
+                        <HorizontalStackLayout Spacing="10">
+                            <Switch x:Name="FridgeSwitch" IsToggled="False" />
+                            <Label Text="Power" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Fridge Temp:" />
+                            <Label x:Name="FridgeTempLabel" Text="4°C" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Freezer Temp:" />
+                            <Label x:Name="FreezerTempLabel" Text="-2°C" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Dehumidifier Section -->
+                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                    <VerticalStackLayout>
+                        <Label Text="Smart Dehumidifier" FontSize="20" />
+                        <HorizontalStackLayout Spacing="10">
+                            <Switch x:Name="DehumidifierSwitch" IsToggled="False" />
+                            <Label Text="Power" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Water Level:" />
+                            <Label x:Name="WaterLevelLabel" Text="50%" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Humidity:" />
+                            <Label x:Name="HumidityLabel" Text="20%" />
+                        </HorizontalStackLayout>
                     </VerticalStackLayout>
                 </Frame>
 
