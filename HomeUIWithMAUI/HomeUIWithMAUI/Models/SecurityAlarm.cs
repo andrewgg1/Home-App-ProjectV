@@ -1,23 +1,18 @@
 ﻿namespace HomeUIWithMAUI.Models
 {
-    public class SecurityAlarm : DeviceWithHub
+    public class SecurityAlarm(int DeviceId, State CurrentState, bool DefaultAlarmState) : DeviceWithHub(4, DeviceId, "Security Alarm", CurrentState)
     {
-        public bool isActivated { get; set; }
-
-        public SecurityAlarm(int id, string name, string room, bool isOn, string hubName, string hubId, bool isActivated)
-            : base(id, "SecurityAlarm", name, room, isOn, hubName, hubId)
-        {
-        }
+        public bool IsActivated { get; set; } = DefaultAlarmState;
 
         public void Activate()
         {
-            isActivated = true;
+            IsActivated = true;
             LastUpdated = DateTime.Now;
         }
 
         public void Deactivate()
         {
-            isActivated = false;
+            IsActivated = false;
             LastUpdated = DateTime.Now;
         }
     }

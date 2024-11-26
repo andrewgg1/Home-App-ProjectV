@@ -1,33 +1,28 @@
 ﻿namespace HomeUIWithMAUI.Models
 {
-    public class Tracker : DeviceWithHub
+    public class Tracker(int DeviceId, State CurrentState, bool DefaultTrackerState, double DefaultLocation) : DeviceWithHub(5, DeviceId, "Tracker", CurrentState)
     {
-        public bool isActivated { get; set; }
-        public double location { get; set; }
-
-        public Tracker(int id, string name, string room, bool isOn, string hubName, string hubId, bool isActivated)
-            : base(id, "Tracker", name, room, isOn, hubName, hubId)
-        {
-        }
+        public bool IsActivated { get; set; } = DefaultTrackerState;
+        public double Location { get; set; } = DefaultLocation;
 
         public void Activate()
         {
-            isActivated = true;
+            IsActivated = true;
             UpdateState(State.On);
             LastUpdated = DateTime.Now;
         }
 
         public void Deactivate()
         {
-            isActivated = false;
+            IsActivated = false;
             UpdateState(State.Off);
             LastUpdated = DateTime.Now;
         }
 
         public void UpdateLocation(double newLocation)
         {
-            isActivated = true;
-            location = newLocation;
+            IsActivated = true;
+            Location = newLocation;
             LastUpdated = DateTime.Now;
         }
     }

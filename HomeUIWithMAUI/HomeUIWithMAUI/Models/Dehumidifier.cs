@@ -1,22 +1,9 @@
 ﻿namespace HomeUIWithMAUI.Models
 {
-    public class Dehumidifier : Device
+    public class Dehumidifier(State currentState) : Device(0, 1, "Dehumidifier", currentState)
     {
-        public int HumidityLevel { get; set; } // Current room humidity level
-        public int WaterLevel { get; set; }
-        //public int DesiredHumidity { get; set; } // Target humidity set by the user
-        //public string Mode { get; set; } // Modes like "Continuous", "Auto", "Eco"
-        //public int FanSpeed { get; set; } // Levels like "Low", "Medium", "High"
-
-        public Dehumidifier(int id, string name, string room)
-            : base(id, "Dehumidifier", State.On)
-        {
-            HumidityLevel = 40; // Default humidity level
-            WaterLevel = 40;
-            //Mode = "Auto";  // Default mode
-            //DesiredHumidity = 50; // Default target humidity
-            //FanSpeed = 1; // Default fan speed (Low)
-        }
+        public int HumidityLevel { get; set; } = 40; // Default humidity level
+        public int WaterLevel { get; set; } = 40;
 
         public void UpdateHumidityLevel(int currentHumidity)
         {

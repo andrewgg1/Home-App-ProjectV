@@ -1,14 +1,8 @@
 ﻿namespace HomeUIWithMAUI.Models
 {
-    public class SmartLock : DeviceWithHub
+    public class SmartLock(int DeviceId, State CurrentState, bool DefaultLockState) : DeviceWithHub(1, DeviceId, "Smart Lock", CurrentState)
     {
-        public bool IsLocked { get; set; }
-
-        public SmartLock(int id, string name, string room, bool isOn, string hubName, string hubId, bool isLocked)
-            : base(id, "SmartLock", name, room, isOn, hubName, hubId)
-        {
-            IsLocked = isLocked;
-        }
+        public bool IsLocked { get; set; } = DefaultLockState;
 
         public void Lock()
         {

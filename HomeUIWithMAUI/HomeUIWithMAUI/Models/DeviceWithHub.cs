@@ -1,16 +1,11 @@
 ﻿namespace HomeUIWithMAUI.Models
 {
-    public abstract class DeviceWithHub : Device
+    public abstract class DeviceWithHub(int DeviceId, int HubId, string HubName, State state) : Device(DeviceId, HubId, "Hub", state)
     {
-        public string HubName { get; set; }
-        public string HubId { get; set; }
+        public string HubName { get; set; } = HubName;
+        //public int HubId { get; set; }
 
-        protected DeviceWithHub(int id, string type, string name, string room, bool isOn, string hubName, string hubId)
-            : base(id, type, name, room, isOn)
-        {
-            HubName = hubName;
-            HubId = hubId;
-        }
+
     }
 }
 

@@ -1,23 +1,18 @@
 ﻿namespace HomeUIWithMAUI.Models
 {
-    public class SecurityCamera : DeviceWithHub
+    public class SecurityCamera(int DeviceId, State CurrentState, bool MotionDetected) : DeviceWithHub(3, DeviceId, "Security Camera", CurrentState)
     {
-        public bool motionDetected { get; set; }
-
-        public SecurityCamera(int id, string name, string room, bool isOn, string hubName, string hubId, bool motionDetected)
-            : base(id, "SecurityCamera", name, room, isOn, hubName, hubId)
-        {
-        }
+        public bool MotionDetected { get; set; } = MotionDetected;
 
         public void DetectMotion()
         {
-            motionDetected = true;
+            MotionDetected = true;
             LastUpdated = DateTime.Now;
         }
 
         public void ResetSecurityCamera()
         {
-            motionDetected = false;
+            MotionDetected = false;
             LastUpdated = DateTime.Now;
         }
     }

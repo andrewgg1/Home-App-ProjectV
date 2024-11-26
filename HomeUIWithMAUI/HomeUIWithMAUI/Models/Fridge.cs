@@ -1,20 +1,13 @@
 ﻿namespace HomeUIWithMAUI.Models
 {
-    public class Fridge : Device
+    public class Fridge(State CurrentState) : Device(0, 0, "Fridge", CurrentState)
     {
-        public double FridgeTemperature { get; set; }
-        public double FreezerTemperature { get; set; }
+        public double FridgeTemperature { get; set; } = 4.0;
+        public double FreezerTemperature { get; set; } = -2.0;
         //public bool DoorOpen { get; set; }
         //public bool IsCooling { get; set; }
 
-        public Fridge(int id, string name)
-            : base(id, "Fridge", State.On)
-        {
-            FridgeTemperature = 4.0; // Assumption: Default fridge temp in °C
-            FreezerTemperature = -2.0;
-            //DoorOpen = false;
-            //IsCooling = true;
-        }
+
 
         public void UpdateTemperature(double FridgeTemp, double FreezerTemp)
         {
