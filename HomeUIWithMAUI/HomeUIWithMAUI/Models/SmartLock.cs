@@ -1,6 +1,6 @@
 ﻿namespace HomeUIWithMAUI.Models
 {
-    public class SmartLock : DeviceWithHub
+    public class SmartLock : Device
     {
         public SmartLock(int deviceId, State currentState, bool defaultLockState)
             : base(1, deviceId, "Smart Lock", currentState)
@@ -10,6 +10,7 @@
 
         // Parameterless constructor for EF Core
         public SmartLock() : base(1, 0, "Smart Lock", State.Off) { }
+
         public bool IsLocked { get; set; }
 
         public void Lock()

@@ -1,4 +1,5 @@
 ﻿using HomeUIWithMAUI.Data;
+using HomeUIWithMAUI.Models;
 using HomeUIWithMAUI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -31,14 +32,54 @@ namespace HomeUIWithMAUI
 
             var app = builder.Build();
 
-            // Apply migrations at startup to ensure the database schema is up to date
+            // Apply migrations and seed the database at startup
             using (var scope = app.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                dbContext.Database.Migrate(); // Applies any pending migrations to the database
+                try
+                {
+                    // Apply migrations
+                    dbContext.Database.Migrate();
+
+                    // Seed the database
+                    SeedDatabase(dbContext);
+                    Console.WriteLine("Database initialized and seeded successfully.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error during migration or seeding: {ex.Message}");
+                }
             }
 
             return app;
+        }
+
+        private static void SeedDatabase(ApplicationDbContext context)
+        {
+            // Seed Thermostats
+            if (!context.Thermostats.Any())
+            {
+                context.Thermostats.Add(new Thermostat
+                {
+                    DeviceId = 1,
+                    CurrentTemperature = 72,
+                    CurrentState = State.Off
+                });
+            }
+
+            // Seed SmartLocks
+            if (!context.SmartLocks.Any())
+            {
+                context.SmartLocks.Add(new SmartLock
+                {
+                    DeviceId = 1,
+                    CurrentState = State.Off,
+                    IsLocked = true
+                });
+            }
+
+            // Save changes
+            context.SaveChanges();
         }
     }
 }

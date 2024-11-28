@@ -5,10 +5,11 @@ namespace HomeUIWithMAUI
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage(IDeviceService deviceService)
+        public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel(deviceService); // Bind to ViewModel
+            BindingContext = new MainPageViewModel(new DeviceService(
+                new Data.ApplicationDbContext(new Microsoft.EntityFrameworkCore.DbContextOptions<Data.ApplicationDbContext>())));
         }
 
         // Event handler for adjusting the thermostat temperature

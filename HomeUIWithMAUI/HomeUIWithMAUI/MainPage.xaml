@@ -26,14 +26,46 @@
                 <Label Text="Devices" FontSize="24" FontAttributes="Bold" />
 
                 <!-- Thermostat Section -->
-                <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
-                    <VerticalStackLayout>
-                        <Label Text="{Binding ThermostatStatus}" FontSize="18" />
-                        <Switch IsToggled="{Binding IsThermostatOn}" />
-                        <Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Command="{Binding AdjustThermostatCommand}" />
-                    </VerticalStackLayout>
-                </Frame>
+                <ContentView>
+                    <ContentView.Triggers>
+                        <!-- Show Thermostat Controls if HasThermostat is True -->
+                        <DataTrigger TargetType="ContentView" Binding="{Binding HasThermostat}" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                                        <VerticalStackLayout>
+                                            <Label Text="{Binding ThermostatStatus}" FontSize="18" />
+                                            <Switch IsToggled="{Binding IsThermostatOn}" />
+                                            <Button Text="Adjust Temperature" 
+                                    BackgroundColor="Blue" 
+                                    TextColor="White" 
+                                    Command="{Binding AdjustThermostatCommand}" />
+                                        </VerticalStackLayout>
+                                    </Frame>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
 
+                        <!-- Show Fallback Boilerplate if HasThermostat is False -->
+                        <DataTrigger TargetType="ContentView" Binding="{Binding HasThermostat}" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
+                                        <VerticalStackLayout>
+                                            <Label Text="No thermostat data available." FontSize="18" HorizontalOptions="Center" />
+                                            <Button Text="Retry" 
+                                    BackgroundColor="Gray" 
+                                    TextColor="White" 
+                                    Command="{Binding RetryLoadCommand}" 
+                                    HorizontalOptions="Center" />
+                                        </VerticalStackLayout>
+                                    </Frame>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </ContentView.Triggers>
+                </ContentView>
+                
                 <!-- Fridge Section -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
                     <VerticalStackLayout>
