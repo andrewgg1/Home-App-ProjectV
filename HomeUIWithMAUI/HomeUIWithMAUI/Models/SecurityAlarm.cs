@@ -9,7 +9,7 @@
 
         public SecurityAlarm(int deviceId, State currentState, bool defaultAlarmState)
             : base(4, deviceId, "Security Alarm", currentState)
-        {
+    {
             IsActivated = defaultAlarmState;
         }
         public bool IsActivated { get; set; }
