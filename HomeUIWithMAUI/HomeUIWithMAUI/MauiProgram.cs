@@ -1,4 +1,5 @@
 ﻿using HomeUIWithMAUI.Data;
+using HomeUIWithMAUI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -20,6 +21,9 @@ namespace HomeUIWithMAUI
             // Add the DbContext to the services
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite("Data Source=localdatabase.db"));
+
+            // Register the Device Service
+            builder.Services.AddScoped<IDeviceService, DeviceService>();
 
 #if DEBUG
             builder.Logging.AddDebug();

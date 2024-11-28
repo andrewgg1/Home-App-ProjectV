@@ -1,4 +1,4 @@
-using Microsoft.Maui.Controls;
+using HomeUIWithMAUI.ViewModels;
 
 namespace HomeUIWithMAUI
 {
@@ -14,6 +14,8 @@ namespace HomeUIWithMAUI
         public LocksPage()
         {
             InitializeComponent();
+            BindingContext = new LocksPageViewModel(); // Bind to LocksViewModel
+
         }
 
         private void OnFrontDoorLockToggleClicked(object sender, EventArgs e)

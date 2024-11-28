@@ -28,9 +28,9 @@
                 <!-- Thermostat Section -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
                     <VerticalStackLayout>
-                        <Label Text="Thermostat - Status: 72°F" FontSize="18" />
-                        <Switch x:Name="ThermostatSwitch" IsToggled="False" />
-                        <Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatTemperature" />
+                        <Label Text="{Binding ThermostatStatus}" FontSize="18" />
+                        <Switch IsToggled="{Binding IsThermostatOn}" />
+                        <Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Command="{Binding AdjustThermostatCommand}" />
                     </VerticalStackLayout>
                 </Frame>
 
