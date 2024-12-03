@@ -1,4 +1,5 @@
 ﻿using HomeUIWithMAUI.Utilities;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace HomeUIWithMAUI.Models
 {
@@ -12,6 +13,9 @@ namespace HomeUIWithMAUI.Models
         //public string Room { get; set; }
         //public bool IsOn { get; set; }
         public DateTime LastUpdated { get; set; }
+        
+        // Add an event to notify when the device is updated
+        public event Action<Device> Updated;
 
         public string csvData => DataPackageCSV.PackData(this);
 
@@ -29,6 +33,12 @@ namespace HomeUIWithMAUI.Models
         {
             this.CurrentState = newState;
             LastUpdated = DateTime.Now;
+        }
+
+        // Protected method to raise the Updated event
+        protected void OnUpdated()
+        {
+            Updated?.Invoke(this);
         }
     }
 

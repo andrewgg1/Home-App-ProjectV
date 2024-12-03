@@ -8,6 +8,7 @@ using HomeUIWithMAUI.Utilities;
 using HomeUIWithMAUI.Models;
 using Pool = HomeUIWithMAUI.DevicePool.DevicePool;
 using Device = HomeUIWithMAUI.Models.Device;
+using System.Collections.Concurrent;
 
 
 namespace HomeUIWithMAUI.Connection
@@ -17,11 +18,17 @@ namespace HomeUIWithMAUI.Connection
         private const int Port = 5000;
         private TcpListener _listener;
 
+        // Dictionary to track connected clients and their associated device IDs
+        private ConcurrentDictionary<TcpClient, int> _connectedClients = new ConcurrentDictionary<TcpClient, int>();
+
         public async Task StartServerAsync()
         {
             _listener = new TcpListener(IPAddress.Any, Port);
             _listener.Start();
             Console.WriteLine($"Server started on port {Port}, waiting for connections...");
+
+            // Subscribe to the DeviceUpdated event
+            Pool.DeviceUpdated += OnDeviceUpdated;
 
             while (true)
             {
@@ -60,11 +67,14 @@ namespace HomeUIWithMAUI.Connection
                         // Validate message and create device object
                         var (isValid, device) = ValidateMessageFormat(receivedMessage);
                         string responseMessage = isValid ? "1" : "0";
-                        if (isValid)
+
+                        if (isValid && device != null)
                         {
-                            Utilities.DataPackage.PackData(receivedMessage);
-                            // Add device to the device pool or handle it as needed
+                            // Update device in the device pool
                             Pool.UpdateDevice(device);
+
+                            // Store the client's associated device ID
+                            _connectedClients[client] = device.DeviceId;
                         }
 
                         // Send validation result back to the client
@@ -78,7 +88,37 @@ namespace HomeUIWithMAUI.Connection
                 }
                 finally
                 {
+                    // Remove client from the connected clients list when disconnected
+                    _connectedClients.TryRemove(client, out _);
                     Console.WriteLine("Client disconnected.");
+                }
+            }
+        }
+
+        private void OnDeviceUpdated(Device updatedDevice)
+        {
+            // Prepare the CSV data
+            string csvData = updatedDevice.csvData;
+            byte[] dataToSend = Encoding.UTF8.GetBytes(csvData);
+
+            // Send the update to clients associated with the updated device
+            foreach (var kvp in _connectedClients)
+            {
+                TcpClient client = kvp.Key;
+                int deviceId = kvp.Value;
+
+                if (deviceId == updatedDevice.DeviceId)
+                {
+                    try
+                    {
+                        NetworkStream stream = client.GetStream();
+                        stream.WriteAsync(dataToSend, 0, dataToSend.Length);
+                        Console.WriteLine($"Sent update to client: {csvData}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error sending update to client: {ex.Message}");
+                    }
                 }
             }
         }

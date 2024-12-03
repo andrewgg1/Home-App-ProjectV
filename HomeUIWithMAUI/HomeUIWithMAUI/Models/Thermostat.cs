@@ -8,6 +8,7 @@
         {
             CurrentTemperature = temperature;
             LastUpdated = DateTime.Now;
+            OnUpdated(); // Notify that the device has been updated
         }
 
 

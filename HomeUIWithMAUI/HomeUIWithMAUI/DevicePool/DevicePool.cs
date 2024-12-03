@@ -12,15 +12,15 @@ namespace HomeUIWithMAUI.DevicePool
     {
         public static List<Device> Devices { get; set; } = new List<Device>();
 
+        // Add an event for device updates
+        public static event Action<Device> DeviceUpdated;
+
         static DevicePool()
         {
-            // Add 1 of each device to the device pool
-            // No hubs
+            // Existing code to add devices to the pool
             AddDevice(new Models.Fridge(Models.State.On));
             AddDevice(new Models.Dehumidifier(Models.State.On));
             AddDevice(new Models.Thermostat(72.0, Models.State.On));
-
-            // With hubs
             AddDevice(new Models.SmartLock(1, Models.State.On, false));
             AddDevice(new Models.Sensor(2, Models.State.On, false));
             AddDevice(new Models.SecurityCamera(3, Models.State.On, false));
@@ -31,14 +31,19 @@ namespace HomeUIWithMAUI.DevicePool
         public static void AddDevice(Device device)
         {
             Devices.Add(device);
+
+            // Subscribe to the device's Updated event
+            device.Updated += OnDeviceUpdated;
         }
+
         public static void RemoveDevice(Device device)
         {
             Devices.Remove(device);
         }
+
         public static void UpdateDevice(Device device)
         {
-            Device? existingDevice = null;
+            Device existingDevice = null;
 
             if (device is Models.Fridge || device is Models.Dehumidifier || device is Models.Thermostat)
             {
@@ -60,63 +65,50 @@ namespace HomeUIWithMAUI.DevicePool
                     existingDevice.DeviceId = device.DeviceId;
                 }
 
+                // Update device-specific properties
                 switch (existingDevice)
                 {
-                    case Models.Fridge fridge:
-                        if (device is Models.Fridge newFridge)
-                        {
-                            fridge.FridgeTemperature = newFridge.FridgeTemperature;
-                            fridge.FreezerTemperature = newFridge.FreezerTemperature;
-                        }
+                    case Models.Fridge fridge when device is Models.Fridge newFridge:
+                        fridge.FridgeTemperature = newFridge.FridgeTemperature;
+                        fridge.FreezerTemperature = newFridge.FreezerTemperature;
                         break;
-                    case Models.Dehumidifier dehumidifier:
-                        if (device is Models.Dehumidifier newDehumidifier)
-                        {
-                            dehumidifier.HumidityLevel = newDehumidifier.HumidityLevel;
-                            dehumidifier.WaterLevel = newDehumidifier.WaterLevel;
-                        }
+                    case Models.Dehumidifier dehumidifier when device is Models.Dehumidifier newDehumidifier:
+                        dehumidifier.HumidityLevel = newDehumidifier.HumidityLevel;
+                        dehumidifier.WaterLevel = newDehumidifier.WaterLevel;
                         break;
-                    case Models.Thermostat thermostat:
-                        if (device is Models.Thermostat newThermostat)
-                        {
-                            thermostat.CurrentTemperature = newThermostat.CurrentTemperature;
-                        }
+                    case Models.Thermostat thermostat when device is Models.Thermostat newThermostat:
+                        thermostat.CurrentTemperature = newThermostat.CurrentTemperature;
                         break;
-                    case Models.SmartLock smartLock:
-                        if (device is Models.SmartLock newSmartLock)
-                        {
-                            smartLock.IsLocked = newSmartLock.IsLocked;
-                        }
+                    case Models.SmartLock smartLock when device is Models.SmartLock newSmartLock:
+                        smartLock.IsLocked = newSmartLock.IsLocked;
                         break;
-                    case Models.Sensor sensor:
-                        if (device is Models.Sensor newSensor)
-                        {
-                            sensor.IsTriggered = newSensor.IsTriggered;
-                        }
+                    case Models.Sensor sensor when device is Models.Sensor newSensor:
+                        sensor.IsTriggered = newSensor.IsTriggered;
                         break;
-                    case Models.SecurityCamera securityCamera:
-                        if (device is Models.SecurityCamera newSecurityCamera)
-                        {
-                            securityCamera.MotionDetected = newSecurityCamera.MotionDetected;
-                        }
+                    case Models.SecurityCamera securityCamera when device is Models.SecurityCamera newSecurityCamera:
+                        securityCamera.MotionDetected = newSecurityCamera.MotionDetected;
                         break;
-                    case Models.SecurityAlarm securityAlarm:
-                        if (device is Models.SecurityAlarm newSecurityAlarm)
-                        {
-                            securityAlarm.IsActivated = newSecurityAlarm.IsActivated;
-                        }
+                    case Models.SecurityAlarm securityAlarm when device is Models.SecurityAlarm newSecurityAlarm:
+                        securityAlarm.IsActivated = newSecurityAlarm.IsActivated;
                         break;
-                    case Models.Tracker tracker:
-                        if (device is Models.Tracker newTracker)
-                        {
-                            tracker.IsActivated = newTracker.IsActivated;
-                            tracker.Location = newTracker.Location;
-                        }
+                    case Models.Tracker tracker when device is Models.Tracker newTracker:
+                        tracker.IsActivated = newTracker.IsActivated;
+                        tracker.Location = newTracker.Location;
                         break;
                 }
+
+                // Trigger the DeviceUpdated event
+                DeviceUpdated?.Invoke(existingDevice);
             }
         }
-        public static Device? GetDevice(int deviceId)
+
+        private static void OnDeviceUpdated(Device updatedDevice)
+        {
+            // Trigger the DeviceUpdated event when a device updates itself
+            DeviceUpdated?.Invoke(updatedDevice);
+        }
+
+        public static Device GetDevice(int deviceId)
         {
             return Devices.Find(d => d.DeviceId == deviceId);
         }
