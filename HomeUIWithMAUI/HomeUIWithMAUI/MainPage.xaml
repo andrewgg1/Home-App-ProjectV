@@ -12,9 +12,14 @@
 
         <!-- Side Navigation Menu (Left Panel) -->
         <StackLayout Grid.Column="0" Padding="20" BackgroundColor="#F5F5F5" Spacing="25">
-            <Label Text="Home" FontSize="18" FontAttributes="Bold" />
-            <Label Text="Devices" FontSize="18" FontAttributes="Bold" />
-            <Label Text="Device Hub" FontSize="18" FontAttributes="Bold" />
+            <!-- Project Name -->
+            <Label Text="Smart Life"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="#333"
+                   Margin="0,50,0,50" />
         </StackLayout>
 
         <!-- Main Content (Right Panel) -->

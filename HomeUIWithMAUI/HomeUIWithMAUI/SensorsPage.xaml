@@ -14,6 +14,7 @@
                     <VerticalStackLayout>
                         <Label Text="Motion Sensors (Front and Back Outdoor)" FontSize="18" FontAttributes="Bold" />
                         <Label x:Name="MotionSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Label x:Name="MotionSensorNotification" Text="No motion detected." FontSize="14" TextColor="Green" />
                         <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnMotionSensorToggleClicked" />
                     </VerticalStackLayout>
                 </Frame>
@@ -23,6 +24,7 @@
                     <VerticalStackLayout>
                         <Label Text="Glass Break Sensors" FontSize="18" FontAttributes="Bold" />
                         <Label x:Name="GlassBreakSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Label x:Name="GlassBreakSensorNotification" Text="No glass break detected." FontSize="14" TextColor="Green" />
                         <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnGlassBreakSensorToggleClicked" />
                     </VerticalStackLayout>
                 </Frame>
@@ -32,6 +34,7 @@
                     <VerticalStackLayout>
                         <Label Text="Door and Window Sensors" FontSize="18" FontAttributes="Bold" />
                         <Label x:Name="DoorWindowSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Label x:Name="DoorWindowSensorNotification" Text="All doors and windows are secure." FontSize="14" TextColor="Green" />
                         <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnDoorWindowSensorToggleClicked" />
                     </VerticalStackLayout>
                 </Frame>
@@ -41,6 +44,7 @@
                     <VerticalStackLayout>
                         <Label Text="Garage Door Sensors" FontSize="18" FontAttributes="Bold" />
                         <Label x:Name="GarageDoorSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Label x:Name="GarageDoorSensorNotification" Text="Garage door is closed." FontSize="14" TextColor="Green" />
                         <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnGarageDoorSensorToggleClicked" />
                     </VerticalStackLayout>
                 </Frame>
@@ -50,10 +54,10 @@
                     <VerticalStackLayout>
                         <Label Text="Water Leak Sensors" FontSize="18" FontAttributes="Bold" />
                         <Label x:Name="WaterLeakSensorStatus" Text="Status: Inactive" FontSize="16" TextColor="Gray" />
+                        <Label x:Name="WaterLeakSensorNotification" Text="No water leak detected." FontSize="14" TextColor="Green" />
                         <Button Text="Activate/Deactivate" BackgroundColor="Blue" TextColor="White" Clicked="OnWaterLeakSensorToggleClicked" />
                     </VerticalStackLayout>
                 </Frame>
-
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
