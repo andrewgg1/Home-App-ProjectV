@@ -8,12 +8,14 @@
         {
             IsActivated = true;
             LastUpdated = DateTime.Now;
+            OnUpdated(); // Notify that the device has been updated
         }
 
         public void Deactivate()
         {
             IsActivated = false;
             LastUpdated = DateTime.Now;
+            OnUpdated(); // Notify that the device has been updated
         }
     }
 }

@@ -1,4 +1,8 @@
 using Microsoft.Maui.Controls;
+using HomeUIWithMAUI.Connection;
+using HomeUIWithMAUI.Models;
+using Pool = HomeUIWithMAUI.DevicePool.DevicePool;
+using Device = HomeUIWithMAUI.Models.Device;
 
 namespace HomeUIWithMAUI
 {
@@ -9,6 +13,8 @@ namespace HomeUIWithMAUI
         private bool isDoorWindowSensorActive = false;
         private bool isGarageDoorSensorActive = false;
         private bool isWaterLeakSensorActive = false;
+
+        private Models.Sensor _motionSensor;
 
         public SensorsPage()
         {

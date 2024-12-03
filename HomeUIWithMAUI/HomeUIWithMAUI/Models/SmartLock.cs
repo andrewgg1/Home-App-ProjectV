@@ -4,16 +4,11 @@
     {
         public bool IsLocked { get; set; } = DefaultLockState;
 
-        public void Lock()
+        public void ToggleLock()
         {
-            IsLocked = true;
+            IsLocked = !IsLocked;
             LastUpdated = DateTime.Now;
-        }
-
-        public void Unlock()
-        {
-            IsLocked = false;
-            LastUpdated = DateTime.Now;
+            OnUpdated(); // Notify that the device has been updated
         }
     }
 }

@@ -9,6 +9,7 @@
         {
             HumidityLevel = currentHumidity;
             LastUpdated = DateTime.Now;
+            OnUpdated(); // Notify that the device has been updated
         }
 
 
@@ -16,6 +17,7 @@
         {
             WaterLevel = waterLevel;
             LastUpdated = DateTime.Now;
+            OnUpdated(); // Notify that the device has been updated
         }
 
         //public void SetDesiredHumidity(int humidity)

@@ -14,6 +14,7 @@
             FridgeTemperature = FridgeTemp;
             FreezerTemperature = FreezerTemp;
             LastUpdated = DateTime.Now;
+            OnUpdated(); // Notify that the device has been updated
         }
 
         //public void ToggleDoor(bool open)

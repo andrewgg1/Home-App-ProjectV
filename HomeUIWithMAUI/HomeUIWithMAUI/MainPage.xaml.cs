@@ -11,6 +11,12 @@ namespace HomeUIWithMAUI
     public partial class MainPage : ContentPage
     {
         private readonly HighCapacityTcpServer _tcpServer;
+
+        // devices
+        private Models.Thermostat _thermostat;
+        private Models.Fridge _fridge;
+        private Models.Dehumidifier _dehumidifier;
+
         public MainPage()
         {
             InitializeComponent();
@@ -19,24 +25,10 @@ namespace HomeUIWithMAUI
             // Start the TCP server asynchronously
             StartServerAsync();
 
-
-            // this is just for testing, will be removed and put in correct place later
-            // Get the thermostat device from the device pool
-            Thermostat _thermostat = (Thermostat) Pool.Devices.FirstOrDefault(d => d is Models.Thermostat);
-
-            if (_thermostat != null)
-            {
-                Console.WriteLine($"Thermostat found: {_thermostat.Name}");
-                _thermostat.Name = "Living Room Thermostat"; // Update the thermostat name
-                Console.WriteLine($"Thermostat name updated: {_thermostat.Name}");
-
-                _thermostat.SetTemperature(22.0); // Set the thermostat temperature
-                Console.WriteLine($"Thermostat temperature set to: {_thermostat.CurrentTemperature}°C");
-            }
-            else
-            {
-                Console.WriteLine("Thermostat not found.");
-            }
+            // Retrieve devices from the DevicePool
+            _thermostat = Pool.Devices.OfType<Models.Thermostat>().FirstOrDefault();
+            _fridge = Pool.Devices.OfType<Models.Fridge>().FirstOrDefault();
+            _dehumidifier = Pool.Devices.OfType<Models.Dehumidifier>().FirstOrDefault();
         }
 
         private async Task StartServerAsync()
@@ -47,22 +39,38 @@ namespace HomeUIWithMAUI
         // Event handler for adjusting the thermostat temperature
         private async void OnAdjustThermostatTemperature(object sender, EventArgs e)
         {
-            string result = await DisplayPromptAsync("Adjust Temperature", "Enter desired temperature (°C):", initialValue: "22", maxLength: 2, keyboard: Keyboard.Numeric);
-            if (int.TryParse(result, out int newTemperature))
+            string result = await DisplayPromptAsync(
+                "Adjust Temperature",
+                "Enter desired temperature (°C):",
+                initialValue: _thermostat?.CurrentTemperature.ToString(),
+                maxLength: 2,
+                keyboard: Keyboard.Numeric
+            );
+
+            if (double.TryParse(result, out double newTemperature) && _thermostat != null)
             {
-                // Placeholder for integration with Home Business Layer
-                // Example: Call a method to update the thermostat temperature
-                DisplayAlert("Thermostat Updated", $"Thermostat set to {newTemperature}°C.", "OK");
+                _thermostat.SetTemperature(newTemperature);
+                await DisplayAlert(
+                    "Thermostat Updated",
+                    $"Thermostat set to {newTemperature}°C.",
+                    "OK"
+                );
             }
         }
 
         // Event handler for toggling Fridge Power
-        private void OnToggleFridgePower(object sender, EventArgs e)
+        private void OnToggleFridgePower(object sender, ToggledEventArgs e)
         {
-            bool isOn = FridgeSwitch.IsToggled;
-            // Placeholder for integration with Home Business Layer
-            // Example: Call a method to update the fridge power state
-            DisplayAlert("Fridge Power", $"Fridge is now {(isOn ? "On" : "Off")}.", "OK");
+            if (_fridge != null)
+            {
+                var newState = e.Value ? Models.State.On : Models.State.Off;
+                _fridge.UpdateState(newState);
+                DisplayAlert(
+                    "Fridge Power",
+                    $"Fridge is now {(e.Value ? "On" : "Off")}.",
+                    "OK"
+                );
+            }
         }
 
         // Event handler for toggling Dehumidifier Power

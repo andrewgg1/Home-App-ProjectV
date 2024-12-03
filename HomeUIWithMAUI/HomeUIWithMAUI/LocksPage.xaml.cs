@@ -1,4 +1,8 @@
 using Microsoft.Maui.Controls;
+using HomeUIWithMAUI.Connection;
+using HomeUIWithMAUI.Models;
+using Pool = HomeUIWithMAUI.DevicePool.DevicePool;
+using Device = HomeUIWithMAUI.Models.Device;
 
 namespace HomeUIWithMAUI
 {
@@ -11,15 +15,22 @@ namespace HomeUIWithMAUI
         private bool isInteriorDoorLocked = true;
         private bool isGateLocked = false;
 
+        private Models.SmartLock _frontDoorLock;
+
         public LocksPage()
         {
             InitializeComponent();
+
+            _frontDoorLock = Pool.Devices.OfType<Models.SmartLock>().FirstOrDefault(d => d.HubId == 1);
         }
 
         private void OnFrontDoorLockToggleClicked(object sender, EventArgs e)
         {
-            isFrontDoorLocked = !isFrontDoorLocked;
-            FrontDoorLockStatus.Text = "Status: " + (isFrontDoorLocked ? "Locked" : "Unlocked");
+            //isFrontDoorLocked = !isFrontDoorLocked;
+            _frontDoorLock.ToggleLock();
+            FrontDoorLockStatus.Text = "Status: " + (_frontDoorLock.IsLocked ? "Locked" : "Unlocked");
+            // popup message to show the status of the lock
+            DisplayAlert("Front Door Lock", "Front door is now " + (_frontDoorLock.IsLocked ? "locked" : "unlocked"), "OK");
         }
 
         private void OnGarageDoorLockToggleClicked(object sender, EventArgs e)

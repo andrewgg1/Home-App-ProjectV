@@ -8,12 +8,14 @@
         {
             IsTriggered = true;
             LastUpdated = DateTime.Now;
+            OnUpdated(); // Notify that the device has been updated
         }
 
         public void ResetSensor()
         {
             IsTriggered = false;
             LastUpdated = DateTime.Now;
+            OnUpdated(); // Notify that the device has been updated
         }
     }
 }

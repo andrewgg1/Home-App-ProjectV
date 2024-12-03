@@ -121,6 +121,24 @@ namespace HomeUIWithMAUI.Connection
                     }
                 }
             }
+            SendToLocalhostPort3500(dataToSend);
+        }
+
+        private void SendToLocalhostPort3500(byte[] data)
+        {
+            try
+            {
+                using (TcpClient client = new TcpClient("localhost", 3500))
+                {
+                    NetworkStream stream = client.GetStream();
+                    stream.Write(data, 0, data.Length);
+                    Console.WriteLine("Sent update to localhost port 3500");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending update to localhost port 3500: {ex.Message}");
+            }
         }
     }
 }
