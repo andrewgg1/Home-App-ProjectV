@@ -1,5 +1,8 @@
 ﻿using Microsoft.Maui.Controls;
 using HomeUIWithMAUI.Connection;
+using HomeUIWithMAUI.Models;
+using Pool = HomeUIWithMAUI.DevicePool.DevicePool;
+using Device = HomeUIWithMAUI.Models.Device;
 
 using System;
 
@@ -15,6 +18,25 @@ namespace HomeUIWithMAUI
 
             // Start the TCP server asynchronously
             StartServerAsync();
+
+
+            // this is just for testing, will be removed and put in correct place later
+            // Get the thermostat device from the device pool
+            Thermostat _thermostat = (Thermostat) Pool.Devices.FirstOrDefault(d => d is Models.Thermostat);
+
+            if (_thermostat != null)
+            {
+                Console.WriteLine($"Thermostat found: {_thermostat.Name}");
+                _thermostat.Name = "Living Room Thermostat"; // Update the thermostat name
+                Console.WriteLine($"Thermostat name updated: {_thermostat.Name}");
+
+                _thermostat.SetTemperature(22.0); // Set the thermostat temperature
+                Console.WriteLine($"Thermostat temperature set to: {_thermostat.CurrentTemperature}°C");
+            }
+            else
+            {
+                Console.WriteLine("Thermostat not found.");
+            }
         }
 
         private async Task StartServerAsync()

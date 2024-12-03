@@ -1,4 +1,6 @@
-﻿namespace HomeUIWithMAUI.Models
+﻿using HomeUIWithMAUI.Utilities;
+
+namespace HomeUIWithMAUI.Models
 {
     public abstract class Device
     {
@@ -10,6 +12,8 @@
         //public string Room { get; set; }
         //public bool IsOn { get; set; }
         public DateTime LastUpdated { get; set; }
+
+        public string csvData => DataPackageCSV.PackData(this);
 
         // Optional constructor for base properties
         protected Device(int DeviceId, int HubId, string name, State CurrentState)

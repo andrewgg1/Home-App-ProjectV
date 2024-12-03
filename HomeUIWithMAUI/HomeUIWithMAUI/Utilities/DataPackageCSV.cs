@@ -3,68 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.Json;
+using HomeUIWithMAUI.Models;
+using Device = HomeUIWithMAUI.Models.Device;
 
 namespace HomeUIWithMAUI.Utilities
 {
     public static class DataPackageCSV
     {
-        public static string PackData(string data)
+        public static string PackData(Device device)
         {
-            try
+            // Start with common fields
+            string csv = $"{device.HubId}, {device.DeviceId}, {device.Name}, {(device.CurrentState == State.On ? "1" : "0")}";
+
+            // Append device-specific data
+            switch (device)
             {
-                var parts = data.Split(',');
+                case Fridge fridge:
+                    csv += $", {fridge.FridgeTemperature}, {fridge.FreezerTemperature}";
+                    break;
 
-                if (parts.Length < 4)
-                {
-                    return "{\"error\": \"Invalid data format\"}";
-                }
+                case Dehumidifier dehumidifier:
+                    csv += $", {dehumidifier.WaterLevel}, {dehumidifier.HumidityLevel}";
+                    break;
 
-                int hubID = int.Parse(parts[0].Trim());
-                int deviceID = int.Parse(parts[1].Trim());
-                string name = parts[2].Trim();
-                int isOn = int.Parse(parts[3].Trim());
+                case Thermostat thermostat:
+                    csv += $", {thermostat.CurrentTemperature}";
+                    break;
 
-                object deviceObject = name switch
-                {
-                    "SmartFridge" when parts.Length == 6 => new
-                    {
-                        HubID = hubID,
-                        DeviceID = deviceID,
-                        Name = name,
-                        IsOn = isOn,
-                        FridgeTemp = int.Parse(parts[4].Trim()),
-                        FreezerTemp = int.Parse(parts[5].Trim())
-                    },
-                    "SmartDehumidifier" when parts.Length == 6 => new
-                    {
-                        HubID = hubID,
-                        DeviceID = deviceID,
-                        Name = name,
-                        IsOn = isOn,
-                        WaterLevel = int.Parse(parts[4].Trim()),
-                        Humidity = int.Parse(parts[5].Trim())
-                    },
-                    "SmartThermostat" when parts.Length == 5 => new
-                    {
-                        HubID = hubID,
-                        DeviceID = deviceID,
-                        Name = name,
-                        IsOn = isOn,
-                        ThermostatTemp = int.Parse(parts[4].Trim())
-                    },
-                    _ => new { error = "Unknown or invalid device data format" }
-                };
+                case SmartLock smartLock:
+                    csv += $", {(smartLock.IsLocked ? "1" : "0")}";
+                    break;
 
-                // Serialize the device object into a JSON string
-                return JsonSerializer.Serialize(deviceObject);
+                case Sensor sensor:
+                    csv += $", {(sensor.IsTriggered ? "1" : "0")}";
+                    break;
+
+                case SecurityCamera camera:
+                    csv += $", {(camera.MotionDetected ? "1" : "0")}";
+                    break;
+
+                case SecurityAlarm alarm:
+                    csv += $", {(alarm.IsActivated ? "1" : "0")}";
+                    break;
+
+                case Tracker tracker:
+                    csv += $", {tracker.Location}";
+                    break;
+
+                default:
+                    // Handle unknown device types if necessary
+                    break;
             }
-            catch (Exception ex)
-            {
-                // Handle errors in parsing or serialization
-                Console.WriteLine($"Error processing data: {ex.Message}");
-                return "{\"error\": \"Error processing data\"}";
-            }
+
+            return csv;
         }
     }
 }
