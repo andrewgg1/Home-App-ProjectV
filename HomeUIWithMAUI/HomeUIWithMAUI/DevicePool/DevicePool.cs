@@ -38,7 +38,17 @@ namespace HomeUIWithMAUI.DevicePool
         }
         public static void UpdateDevice(Device device)
         {
-            Device? existingDevice = Devices.Find(d => d.DeviceId == device.DeviceId && d.HubId == device.HubId);
+            Device? existingDevice = null;
+
+            if (device is Models.Fridge || device is Models.Dehumidifier || device is Models.Thermostat)
+            {
+                existingDevice = Devices.Find(d => d.DeviceId == device.DeviceId && d.HubId == 0);
+            }
+            else
+            {
+                existingDevice = Devices.Find(d => d.HubId == device.HubId);
+            }
+
             if (existingDevice != null)
             {
                 existingDevice.Name = device.Name;
