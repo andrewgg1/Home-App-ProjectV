@@ -18,8 +18,8 @@ namespace HomeUIWithMAUI
                 });
 
             // Add the DbContext to the services
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite("Data Source=localdatabase.db"));
+            //builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                //options.UseSqlite("Data Source=localdatabase.db"));
 
 #if DEBUG
             builder.Logging.AddDebug();
@@ -28,11 +28,11 @@ namespace HomeUIWithMAUI
             var app = builder.Build();
 
             // Apply migrations at startup to ensure the database schema is up to date
-            using (var scope = app.Services.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                dbContext.Database.Migrate(); // Applies any pending migrations to the database
-            }
+            //using (var scope = app.Services.CreateScope())
+            //{
+            //    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            //    dbContext.Database.Migrate(); // Applies any pending migrations to the database
+            //}
 
             return app;
         }

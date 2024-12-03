@@ -5,6 +5,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HomeUIWithMAUI.Utilities;
+using HomeUIWithMAUI.DevicePool;
+using HomeUIWithMAUI.Models;
+
 
 namespace HomeUIWithMAUI.Connection
 {
@@ -79,14 +82,27 @@ namespace HomeUIWithMAUI.Connection
         private bool ValidateMessageFormat(string message)
         {
             // Define regex patterns for each device type
-            string fridgePattern = @"^0, [0-2], SmartFridge, [0-1], -?\d+, -?\d+$";
-            string dehumidifierPattern = @"^0, [0-2], SmartDehumidifier, [0-1], \d+, \d+$";
-            string thermostatPattern = @"^0, [0-2], SmartThermostat, [0-1], -?\d+$";
+            // No hubs
+            string fridgePattern = @"^0, 0, SmartFridge, [0-1], -?\d+, -?\d+$";
+            string dehumidifierPattern = @"^0, 1, SmartDehumidifier, [0-1], \d+, \d+$";
+            string thermostatPattern = @"^0, 2, SmartThermostat, [0-1], -?\d+$";
+
+            // With hubs
+            string lockPattern = @"^1, \d+, SmartLock, [0-1](, -?\d+)*$";
+            string sensorPattern = @"^2, \d+, SmartSensor, [0-1](, -?\d+)*$";
+            string cameraPattern = @"^3, \d+, SmartCamera, [0-1](, -?\d+)*$";
+            string alarmPattern = @"^4, \d+, SmartAlarm, [0-1](, -?\d+)*$";
+            string trackerPattern = @"^5, \d+, SmartTracker, [0-1](, -?\d+)*$";
 
             // Check if message matches any of the patterns
             return Regex.IsMatch(message, fridgePattern) ||
                    Regex.IsMatch(message, dehumidifierPattern) ||
-                   Regex.IsMatch(message, thermostatPattern);
+                   Regex.IsMatch(message, thermostatPattern) ||
+                   Regex.IsMatch(message, lockPattern) ||
+                   Regex.IsMatch(message, sensorPattern) ||
+                   Regex.IsMatch(message, cameraPattern) ||
+                   Regex.IsMatch(message, alarmPattern) ||
+                   Regex.IsMatch(message, trackerPattern);
         }
     }
 }
