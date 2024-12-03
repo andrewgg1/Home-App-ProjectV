@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,7 +21,7 @@ namespace HomeUIWithMAUI.DevicePool
             // Existing code to add devices to the pool
             AddDevice(new Models.Fridge(Models.State.On));
             AddDevice(new Models.Dehumidifier(Models.State.On));
-            AddDevice(new Models.Thermostat(72.0, Models.State.On));
+            AddDevice(new Models.Thermostat(22.0, Models.State.On));
             AddDevice(new Models.SmartLock(1, Models.State.On, false));
             AddDevice(new Models.Sensor(2, Models.State.On, false));
             AddDevice(new Models.SecurityCamera(3, Models.State.On, false));
@@ -52,6 +53,12 @@ namespace HomeUIWithMAUI.DevicePool
             else
             {
                 existingDevice = Devices.Find(d => d.HubId == device.HubId);
+            }
+
+            // write out the entire device with trace writeline
+            if (existingDevice != null)
+            {
+                Trace.WriteLine(device.ToString());
             }
 
             if (existingDevice != null)

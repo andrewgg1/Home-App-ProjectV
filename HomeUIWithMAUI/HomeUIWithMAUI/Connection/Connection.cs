@@ -9,6 +9,7 @@ using HomeUIWithMAUI.Models;
 using Pool = HomeUIWithMAUI.DevicePool.DevicePool;
 using Device = HomeUIWithMAUI.Models.Device;
 using System.Collections.Concurrent;
+using System.Diagnostics;
 
 
 namespace HomeUIWithMAUI.Connection
@@ -25,7 +26,7 @@ namespace HomeUIWithMAUI.Connection
         {
             _listener = new TcpListener(IPAddress.Any, Port);
             _listener.Start();
-            Console.WriteLine($"Server started on port {Port}, waiting for connections...");
+            Trace.WriteLine($"Server started on port {Port}, waiting for connections...");
 
             // Subscribe to the DeviceUpdated event
             Pool.DeviceUpdated += OnDeviceUpdated;
@@ -35,14 +36,14 @@ namespace HomeUIWithMAUI.Connection
                 try
                 {
                     var client = await _listener.AcceptTcpClientAsync();
-                    Console.WriteLine("Client connected.");
+                    Trace.WriteLine("Client connected.");
 
                     // Process each client connection in a separate task
                     _ = HandleClientAsync(client);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error accepting client: {ex.Message}");
+                    Trace.WriteLine($"Error accepting client: {ex.Message}");
                 }
             }
         }
@@ -62,7 +63,7 @@ namespace HomeUIWithMAUI.Connection
                         if (bytesRead == 0) break; // Client disconnected
 
                         string receivedMessage = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        Console.WriteLine($"Received from client: {receivedMessage}");
+                        Trace.WriteLine($"Received from client: {receivedMessage}");
 
                         // Validate message and create device object
                         var (isValid, device) = DataUnpackageCSV.ValidateMessageAndCreateDevice(receivedMessage);
@@ -84,13 +85,13 @@ namespace HomeUIWithMAUI.Connection
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error handling client: {ex.Message}");
+                    Trace.WriteLine($"Error handling client: {ex.Message}");
                 }
                 finally
                 {
                     // Remove client from the connected clients list when disconnected
                     _connectedClients.TryRemove(client, out _);
-                    Console.WriteLine("Client disconnected.");
+                    Trace.WriteLine("Client disconnected.");
                 }
             }
         }
@@ -113,11 +114,11 @@ namespace HomeUIWithMAUI.Connection
                     {
                         NetworkStream stream = client.GetStream();
                         stream.WriteAsync(dataToSend, 0, dataToSend.Length);
-                        Console.WriteLine($"Sent update to client: {csvData}");
+                        Trace.WriteLine($"Sent update to client: {csvData}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error sending update to client: {ex.Message}");
+                        Trace.WriteLine($"Error sending update to client: {ex.Message}");
                     }
                 }
             }
@@ -132,12 +133,12 @@ namespace HomeUIWithMAUI.Connection
                 {
                     NetworkStream stream = client.GetStream();
                     stream.Write(data, 0, data.Length);
-                    Console.WriteLine("Sent update to localhost port 3500");
+                    Trace.WriteLine("Sent update to localhost port 3500");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error sending update to localhost port 3500: {ex.Message}");
+                Trace.WriteLine($"Error sending update to localhost port 3500: {ex.Message}");
             }
         }
     }
