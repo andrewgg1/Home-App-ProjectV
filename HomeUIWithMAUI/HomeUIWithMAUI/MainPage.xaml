@@ -12,7 +12,6 @@
 
         <!-- Side Navigation Menu (Left Panel) -->
         <StackLayout Grid.Column="0" Padding="20" BackgroundColor="#F5F5F5" Spacing="25">
-            <!-- Side Menu Options -->
             <Label Text="Home" FontSize="18" FontAttributes="Bold" />
             <Label Text="Devices" FontSize="18" FontAttributes="Bold" />
             <Label Text="Device Hub" FontSize="18" FontAttributes="Bold" />
@@ -28,7 +27,7 @@
                 <!-- Thermostat Section -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10">
                     <VerticalStackLayout>
-                        <Label Text="Thermostat - Status: 72°F" FontSize="18" />
+                        <Label x:Name="ThermostatStatusLabel" Text="Thermostat - Status: Loading..." FontSize="18" />
                         <Switch x:Name="ThermostatSwitch" IsToggled="False" />
                         <Button Text="Adjust Temperature" BackgroundColor="Blue" TextColor="White" Clicked="OnAdjustThermostatTemperature" />
                     </VerticalStackLayout>
@@ -46,10 +45,12 @@
                             <Label Text="Fridge Temp:" />
                             <Label x:Name="FridgeTempLabel" Text="4°C" />
                         </HorizontalStackLayout>
+                        <Slider x:Name="FridgeTempSlider" Minimum="-10" Maximum="10" Value="4" ValueChanged="OnFridgeTempSliderChanged" />
                         <HorizontalStackLayout Spacing="10">
                             <Label Text="Freezer Temp:" />
                             <Label x:Name="FreezerTempLabel" Text="-2°C" />
                         </HorizontalStackLayout>
+                        <Slider x:Name="FreezerTempSlider" Minimum="-30" Maximum="0" Value="-2" ValueChanged="OnFreezerTempSliderChanged" />
                     </VerticalStackLayout>
                 </Frame>
 
@@ -65,16 +66,19 @@
                             <Label Text="Water Level:" />
                             <Label x:Name="WaterLevelLabel" Text="50%" />
                         </HorizontalStackLayout>
+                        <Slider x:Name="WaterLevelSlider" Minimum="0" Maximum="100" Value="50" ValueChanged="OnWaterLevelSliderChanged" />
                         <HorizontalStackLayout Spacing="10">
                             <Label Text="Humidity:" />
                             <Label x:Name="HumidityLabel" Text="20%" />
                         </HorizontalStackLayout>
+                        <Slider x:Name="HumiditySlider" Minimum="0" Maximum="100" Value="20" ValueChanged="OnHumiditySliderChanged" />
                     </VerticalStackLayout>
                 </Frame>
 
                 <!-- Device Hub Navigation -->
                 <Label Text="Device Hub" FontSize="24" FontAttributes="Bold" />
 
+                <!-- Locks -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
                     <VerticalStackLayout>
                         <Label Text="Locks" FontSize="18" />
@@ -82,6 +86,7 @@
                     </VerticalStackLayout>
                 </Frame>
 
+                <!-- Sensors -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
                     <VerticalStackLayout>
                         <Label Text="Sensors" FontSize="18" />
@@ -89,6 +94,7 @@
                     </VerticalStackLayout>
                 </Frame>
 
+                <!-- Cameras -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
                     <VerticalStackLayout>
                         <Label Text="Cameras" FontSize="18" />
@@ -96,6 +102,7 @@
                     </VerticalStackLayout>
                 </Frame>
 
+                <!-- Alarms -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
                     <VerticalStackLayout>
                         <Label Text="Alarms" FontSize="18" />
@@ -103,6 +110,7 @@
                     </VerticalStackLayout>
                 </Frame>
 
+                <!-- Trackers -->
                 <Frame BorderColor="Gray" Padding="10" CornerRadius="10" Margin="0,5,0,5">
                     <VerticalStackLayout>
                         <Label Text="Trackers" FontSize="18" />

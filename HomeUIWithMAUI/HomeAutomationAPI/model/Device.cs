@@ -1,22 +1,24 @@
-﻿namespace HomeAutomationAPI.Models
+﻿using System.Text.Json.Serialization;
+
+namespace HomeAutomationAPI.Models
 {
     public class Device
     {
-        public int Id { get; set; } // Unique ID
-        public string Name { get; set; } // Device name (e.g., "Front Door Lock")
-        public string Type { get; set; } // Type of device (e.g., "Lock", "Sensor", "Camera")
-        public bool IsOn { get; set; } // Device state (true = on, false = off)
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public bool IsOn { get; set; } = false;
 
-        public Device(string name, string type)
-        {
-            Name = name;
-            Type = type;
-            IsOn = false;
-        }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public double? CurrentTemperature { get; set; }
 
-        public void Toggle()
-        {
-            IsOn = !IsOn; // Toggle the device state
-        }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public double? TargetTemperature { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? WaterLevel { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? Humidity { get; set; }
     }
 }

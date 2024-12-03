@@ -1,6 +1,0 @@
-@HomeAutomationAPI_HostAddress = http://localhost:5069
-
-GET {{HomeAutomationAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
