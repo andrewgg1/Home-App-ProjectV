@@ -55,6 +55,11 @@ namespace HomeUIWithMAUI.DevicePool
                 existingDevice.CurrentState = device.CurrentState;
                 existingDevice.LastUpdated = device.LastUpdated;
 
+                if (!(existingDevice is Models.Fridge || existingDevice is Models.Dehumidifier || existingDevice is Models.Thermostat))
+                {
+                    existingDevice.DeviceId = device.DeviceId;
+                }
+
                 switch (existingDevice)
                 {
                     case Models.Fridge fridge:
