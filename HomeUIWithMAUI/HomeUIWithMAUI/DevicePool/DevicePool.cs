@@ -41,7 +41,64 @@ namespace HomeUIWithMAUI.DevicePool
             Device? existingDevice = Devices.Find(d => d.DeviceId == device.DeviceId && d.HubId == device.HubId);
             if (existingDevice != null)
             {
-                existingDevice = device;
+                existingDevice.Name = device.Name;
+                existingDevice.CurrentState = device.CurrentState;
+                existingDevice.LastUpdated = device.LastUpdated;
+
+                switch (existingDevice)
+                {
+                    case Models.Fridge fridge:
+                        if (device is Models.Fridge newFridge)
+                        {
+                            fridge.FridgeTemperature = newFridge.FridgeTemperature;
+                            fridge.FreezerTemperature = newFridge.FreezerTemperature;
+                        }
+                        break;
+                    case Models.Dehumidifier dehumidifier:
+                        if (device is Models.Dehumidifier newDehumidifier)
+                        {
+                            dehumidifier.HumidityLevel = newDehumidifier.HumidityLevel;
+                            dehumidifier.WaterLevel = newDehumidifier.WaterLevel;
+                        }
+                        break;
+                    case Models.Thermostat thermostat:
+                        if (device is Models.Thermostat newThermostat)
+                        {
+                            thermostat.CurrentTemperature = newThermostat.CurrentTemperature;
+                        }
+                        break;
+                    case Models.SmartLock smartLock:
+                        if (device is Models.SmartLock newSmartLock)
+                        {
+                            smartLock.IsLocked = newSmartLock.IsLocked;
+                        }
+                        break;
+                    case Models.Sensor sensor:
+                        if (device is Models.Sensor newSensor)
+                        {
+                            sensor.IsTriggered = newSensor.IsTriggered;
+                        }
+                        break;
+                    case Models.SecurityCamera securityCamera:
+                        if (device is Models.SecurityCamera newSecurityCamera)
+                        {
+                            securityCamera.MotionDetected = newSecurityCamera.MotionDetected;
+                        }
+                        break;
+                    case Models.SecurityAlarm securityAlarm:
+                        if (device is Models.SecurityAlarm newSecurityAlarm)
+                        {
+                            securityAlarm.IsActivated = newSecurityAlarm.IsActivated;
+                        }
+                        break;
+                    case Models.Tracker tracker:
+                        if (device is Models.Tracker newTracker)
+                        {
+                            tracker.IsActivated = newTracker.IsActivated;
+                            tracker.Location = newTracker.Location;
+                        }
+                        break;
+                }
             }
         }
         public static Device? GetDevice(int deviceId)
